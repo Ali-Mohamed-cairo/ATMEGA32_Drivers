@@ -1,0 +1,1553 @@
+
+ATMEGA_Drivers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000c5c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  00000c5c  00000cf0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800064  00800064  00000cf4  2**0
+                  ALLOC
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e5       	ldi	r30, 0x5C	; 92
+  68:	fc e0       	ldi	r31, 0x0C	; 12
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a4 36       	cpi	r26, 0x64	; 100
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a4 e6       	ldi	r26, 0x64	; 100
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 36       	cpi	r26, 0x65	; 101
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 15 06 	call	0xc2a	; 0xc2a <main>
+  8a:	0c 94 2c 06 	jmp	0xc58	; 0xc58 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <MCAL_DIO_SetPinDirection>:
+  92:	fc 01       	movw	r30, r24
+  94:	e0 81       	ld	r30, Z
+  96:	4e 2f       	mov	r20, r30
+  98:	46 95       	lsr	r20
+  9a:	46 95       	lsr	r20
+  9c:	46 95       	lsr	r20
+  9e:	47 70       	andi	r20, 0x07	; 7
+  a0:	8e 2f       	mov	r24, r30
+  a2:	87 70       	andi	r24, 0x07	; 7
+  a4:	28 2f       	mov	r18, r24
+  a6:	30 e0       	ldi	r19, 0x00	; 0
+  a8:	21 30       	cpi	r18, 0x01	; 1
+  aa:	31 05       	cpc	r19, r1
+  ac:	89 f1       	breq	.+98     	; 0x110 <MCAL_DIO_SetPinDirection+0x7e>
+  ae:	22 30       	cpi	r18, 0x02	; 2
+  b0:	31 05       	cpc	r19, r1
+  b2:	1c f4       	brge	.+6      	; 0xba <MCAL_DIO_SetPinDirection+0x28>
+  b4:	23 2b       	or	r18, r19
+  b6:	51 f0       	breq	.+20     	; 0xcc <MCAL_DIO_SetPinDirection+0x3a>
+  b8:	8f c0       	rjmp	.+286    	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+  ba:	22 30       	cpi	r18, 0x02	; 2
+  bc:	31 05       	cpc	r19, r1
+  be:	09 f4       	brne	.+2      	; 0xc2 <MCAL_DIO_SetPinDirection+0x30>
+  c0:	48 c0       	rjmp	.+144    	; 0x152 <MCAL_DIO_SetPinDirection+0xc0>
+  c2:	23 30       	cpi	r18, 0x03	; 3
+  c4:	31 05       	cpc	r19, r1
+  c6:	09 f0       	breq	.+2      	; 0xca <MCAL_DIO_SetPinDirection+0x38>
+  c8:	87 c0       	rjmp	.+270    	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+  ca:	64 c0       	rjmp	.+200    	; 0x194 <MCAL_DIO_SetPinDirection+0x102>
+  cc:	e2 95       	swap	r30
+  ce:	e6 95       	lsr	r30
+  d0:	e6 95       	lsr	r30
+  d2:	e1 70       	andi	r30, 0x01	; 1
+  d4:	f0 e0       	ldi	r31, 0x00	; 0
+  d6:	30 97       	sbiw	r30, 0x00	; 0
+  d8:	69 f0       	breq	.+26     	; 0xf4 <MCAL_DIO_SetPinDirection+0x62>
+  da:	e1 30       	cpi	r30, 0x01	; 1
+  dc:	f1 05       	cpc	r31, r1
+  de:	09 f0       	breq	.+2      	; 0xe2 <MCAL_DIO_SetPinDirection+0x50>
+  e0:	7b c0       	rjmp	.+246    	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+  e2:	80 91 1a 00 	lds	r24, 0x001A
+  e6:	02 c0       	rjmp	.+4      	; 0xec <MCAL_DIO_SetPinDirection+0x5a>
+  e8:	ee 0f       	add	r30, r30
+  ea:	ff 1f       	adc	r31, r31
+  ec:	4a 95       	dec	r20
+  ee:	e2 f7       	brpl	.-8      	; 0xe8 <MCAL_DIO_SetPinDirection+0x56>
+  f0:	8e 2b       	or	r24, r30
+  f2:	0b c0       	rjmp	.+22     	; 0x10a <MCAL_DIO_SetPinDirection+0x78>
+  f4:	20 91 1a 00 	lds	r18, 0x001A
+  f8:	81 e0       	ldi	r24, 0x01	; 1
+  fa:	90 e0       	ldi	r25, 0x00	; 0
+  fc:	02 c0       	rjmp	.+4      	; 0x102 <MCAL_DIO_SetPinDirection+0x70>
+  fe:	88 0f       	add	r24, r24
+ 100:	99 1f       	adc	r25, r25
+ 102:	4a 95       	dec	r20
+ 104:	e2 f7       	brpl	.-8      	; 0xfe <MCAL_DIO_SetPinDirection+0x6c>
+ 106:	80 95       	com	r24
+ 108:	82 23       	and	r24, r18
+ 10a:	80 93 1a 00 	sts	0x001A, r24
+ 10e:	62 c0       	rjmp	.+196    	; 0x1d4 <MCAL_DIO_SetPinDirection+0x142>
+ 110:	e2 95       	swap	r30
+ 112:	e6 95       	lsr	r30
+ 114:	e6 95       	lsr	r30
+ 116:	e1 70       	andi	r30, 0x01	; 1
+ 118:	f0 e0       	ldi	r31, 0x00	; 0
+ 11a:	30 97       	sbiw	r30, 0x00	; 0
+ 11c:	69 f0       	breq	.+26     	; 0x138 <MCAL_DIO_SetPinDirection+0xa6>
+ 11e:	e1 30       	cpi	r30, 0x01	; 1
+ 120:	f1 05       	cpc	r31, r1
+ 122:	09 f0       	breq	.+2      	; 0x126 <MCAL_DIO_SetPinDirection+0x94>
+ 124:	59 c0       	rjmp	.+178    	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+ 126:	80 91 18 00 	lds	r24, 0x0018
+ 12a:	02 c0       	rjmp	.+4      	; 0x130 <MCAL_DIO_SetPinDirection+0x9e>
+ 12c:	ee 0f       	add	r30, r30
+ 12e:	ff 1f       	adc	r31, r31
+ 130:	4a 95       	dec	r20
+ 132:	e2 f7       	brpl	.-8      	; 0x12c <MCAL_DIO_SetPinDirection+0x9a>
+ 134:	8e 2b       	or	r24, r30
+ 136:	0a c0       	rjmp	.+20     	; 0x14c <MCAL_DIO_SetPinDirection+0xba>
+ 138:	90 91 18 00 	lds	r25, 0x0018
+ 13c:	02 c0       	rjmp	.+4      	; 0x142 <MCAL_DIO_SetPinDirection+0xb0>
+ 13e:	22 0f       	add	r18, r18
+ 140:	33 1f       	adc	r19, r19
+ 142:	4a 95       	dec	r20
+ 144:	e2 f7       	brpl	.-8      	; 0x13e <MCAL_DIO_SetPinDirection+0xac>
+ 146:	82 2f       	mov	r24, r18
+ 148:	80 95       	com	r24
+ 14a:	89 23       	and	r24, r25
+ 14c:	80 93 18 00 	sts	0x0018, r24
+ 150:	41 c0       	rjmp	.+130    	; 0x1d4 <MCAL_DIO_SetPinDirection+0x142>
+ 152:	e2 95       	swap	r30
+ 154:	e6 95       	lsr	r30
+ 156:	e6 95       	lsr	r30
+ 158:	e1 70       	andi	r30, 0x01	; 1
+ 15a:	f0 e0       	ldi	r31, 0x00	; 0
+ 15c:	30 97       	sbiw	r30, 0x00	; 0
+ 15e:	61 f0       	breq	.+24     	; 0x178 <MCAL_DIO_SetPinDirection+0xe6>
+ 160:	e1 30       	cpi	r30, 0x01	; 1
+ 162:	f1 05       	cpc	r31, r1
+ 164:	c9 f5       	brne	.+114    	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+ 166:	80 91 14 00 	lds	r24, 0x0014
+ 16a:	02 c0       	rjmp	.+4      	; 0x170 <MCAL_DIO_SetPinDirection+0xde>
+ 16c:	ee 0f       	add	r30, r30
+ 16e:	ff 1f       	adc	r31, r31
+ 170:	4a 95       	dec	r20
+ 172:	e2 f7       	brpl	.-8      	; 0x16c <MCAL_DIO_SetPinDirection+0xda>
+ 174:	8e 2b       	or	r24, r30
+ 176:	0b c0       	rjmp	.+22     	; 0x18e <MCAL_DIO_SetPinDirection+0xfc>
+ 178:	20 91 14 00 	lds	r18, 0x0014
+ 17c:	81 e0       	ldi	r24, 0x01	; 1
+ 17e:	90 e0       	ldi	r25, 0x00	; 0
+ 180:	02 c0       	rjmp	.+4      	; 0x186 <MCAL_DIO_SetPinDirection+0xf4>
+ 182:	88 0f       	add	r24, r24
+ 184:	99 1f       	adc	r25, r25
+ 186:	4a 95       	dec	r20
+ 188:	e2 f7       	brpl	.-8      	; 0x182 <MCAL_DIO_SetPinDirection+0xf0>
+ 18a:	80 95       	com	r24
+ 18c:	82 23       	and	r24, r18
+ 18e:	80 93 14 00 	sts	0x0014, r24
+ 192:	20 c0       	rjmp	.+64     	; 0x1d4 <MCAL_DIO_SetPinDirection+0x142>
+ 194:	e2 95       	swap	r30
+ 196:	e6 95       	lsr	r30
+ 198:	e6 95       	lsr	r30
+ 19a:	e1 70       	andi	r30, 0x01	; 1
+ 19c:	f0 e0       	ldi	r31, 0x00	; 0
+ 19e:	30 97       	sbiw	r30, 0x00	; 0
+ 1a0:	61 f0       	breq	.+24     	; 0x1ba <MCAL_DIO_SetPinDirection+0x128>
+ 1a2:	e1 30       	cpi	r30, 0x01	; 1
+ 1a4:	f1 05       	cpc	r31, r1
+ 1a6:	c1 f4       	brne	.+48     	; 0x1d8 <MCAL_DIO_SetPinDirection+0x146>
+ 1a8:	80 91 11 00 	lds	r24, 0x0011
+ 1ac:	02 c0       	rjmp	.+4      	; 0x1b2 <MCAL_DIO_SetPinDirection+0x120>
+ 1ae:	ee 0f       	add	r30, r30
+ 1b0:	ff 1f       	adc	r31, r31
+ 1b2:	4a 95       	dec	r20
+ 1b4:	e2 f7       	brpl	.-8      	; 0x1ae <MCAL_DIO_SetPinDirection+0x11c>
+ 1b6:	8e 2b       	or	r24, r30
+ 1b8:	0b c0       	rjmp	.+22     	; 0x1d0 <MCAL_DIO_SetPinDirection+0x13e>
+ 1ba:	20 91 11 00 	lds	r18, 0x0011
+ 1be:	81 e0       	ldi	r24, 0x01	; 1
+ 1c0:	90 e0       	ldi	r25, 0x00	; 0
+ 1c2:	02 c0       	rjmp	.+4      	; 0x1c8 <MCAL_DIO_SetPinDirection+0x136>
+ 1c4:	88 0f       	add	r24, r24
+ 1c6:	99 1f       	adc	r25, r25
+ 1c8:	4a 95       	dec	r20
+ 1ca:	e2 f7       	brpl	.-8      	; 0x1c4 <MCAL_DIO_SetPinDirection+0x132>
+ 1cc:	80 95       	com	r24
+ 1ce:	82 23       	and	r24, r18
+ 1d0:	80 93 11 00 	sts	0x0011, r24
+ 1d4:	81 e0       	ldi	r24, 0x01	; 1
+ 1d6:	08 95       	ret
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	08 95       	ret
+
+000001dc <MCAL_DIO_GetPinDirection>:
+ 1dc:	fc 01       	movw	r30, r24
+ 1de:	db 01       	movw	r26, r22
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	28 2f       	mov	r18, r24
+ 1e4:	26 95       	lsr	r18
+ 1e6:	26 95       	lsr	r18
+ 1e8:	26 95       	lsr	r18
+ 1ea:	27 70       	andi	r18, 0x07	; 7
+ 1ec:	87 70       	andi	r24, 0x07	; 7
+ 1ee:	90 e0       	ldi	r25, 0x00	; 0
+ 1f0:	81 30       	cpi	r24, 0x01	; 1
+ 1f2:	91 05       	cpc	r25, r1
+ 1f4:	81 f0       	breq	.+32     	; 0x216 <MCAL_DIO_GetPinDirection+0x3a>
+ 1f6:	82 30       	cpi	r24, 0x02	; 2
+ 1f8:	91 05       	cpc	r25, r1
+ 1fa:	1c f4       	brge	.+6      	; 0x202 <MCAL_DIO_GetPinDirection+0x26>
+ 1fc:	89 2b       	or	r24, r25
+ 1fe:	41 f0       	breq	.+16     	; 0x210 <MCAL_DIO_GetPinDirection+0x34>
+ 200:	05 c0       	rjmp	.+10     	; 0x20c <MCAL_DIO_GetPinDirection+0x30>
+ 202:	82 30       	cpi	r24, 0x02	; 2
+ 204:	91 05       	cpc	r25, r1
+ 206:	51 f0       	breq	.+20     	; 0x21c <MCAL_DIO_GetPinDirection+0x40>
+ 208:	03 97       	sbiw	r24, 0x03	; 3
+ 20a:	a1 f0       	breq	.+40     	; 0x234 <MCAL_DIO_GetPinDirection+0x58>
+ 20c:	80 e0       	ldi	r24, 0x00	; 0
+ 20e:	08 95       	ret
+ 210:	80 91 1a 00 	lds	r24, 0x001A
+ 214:	05 c0       	rjmp	.+10     	; 0x220 <MCAL_DIO_GetPinDirection+0x44>
+ 216:	80 91 18 00 	lds	r24, 0x0018
+ 21a:	02 c0       	rjmp	.+4      	; 0x220 <MCAL_DIO_GetPinDirection+0x44>
+ 21c:	80 91 14 00 	lds	r24, 0x0014
+ 220:	90 e0       	ldi	r25, 0x00	; 0
+ 222:	02 c0       	rjmp	.+4      	; 0x228 <MCAL_DIO_GetPinDirection+0x4c>
+ 224:	95 95       	asr	r25
+ 226:	87 95       	ror	r24
+ 228:	2a 95       	dec	r18
+ 22a:	e2 f7       	brpl	.-8      	; 0x224 <MCAL_DIO_GetPinDirection+0x48>
+ 22c:	81 70       	andi	r24, 0x01	; 1
+ 22e:	8c 93       	st	X, r24
+ 230:	81 e0       	ldi	r24, 0x01	; 1
+ 232:	08 95       	ret
+ 234:	80 91 11 00 	lds	r24, 0x0011
+ 238:	90 e0       	ldi	r25, 0x00	; 0
+ 23a:	02 c0       	rjmp	.+4      	; 0x240 <MCAL_DIO_GetPinDirection+0x64>
+ 23c:	95 95       	asr	r25
+ 23e:	87 95       	ror	r24
+ 240:	2a 95       	dec	r18
+ 242:	e2 f7       	brpl	.-8      	; 0x23c <MCAL_DIO_GetPinDirection+0x60>
+ 244:	81 70       	andi	r24, 0x01	; 1
+ 246:	8c 93       	st	X, r24
+ 248:	81 e0       	ldi	r24, 0x01	; 1
+ 24a:	08 95       	ret
+
+0000024c <MCAL_DIO_SetPinValue>:
+ 24c:	fc 01       	movw	r30, r24
+ 24e:	90 81       	ld	r25, Z
+ 250:	49 2f       	mov	r20, r25
+ 252:	46 95       	lsr	r20
+ 254:	46 95       	lsr	r20
+ 256:	46 95       	lsr	r20
+ 258:	47 70       	andi	r20, 0x07	; 7
+ 25a:	96 fd       	sbrc	r25, 6
+ 25c:	97 c0       	rjmp	.+302    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 25e:	97 70       	andi	r25, 0x07	; 7
+ 260:	29 2f       	mov	r18, r25
+ 262:	30 e0       	ldi	r19, 0x00	; 0
+ 264:	21 30       	cpi	r18, 0x01	; 1
+ 266:	31 05       	cpc	r19, r1
+ 268:	79 f1       	breq	.+94     	; 0x2c8 <MCAL_DIO_SetPinValue+0x7c>
+ 26a:	22 30       	cpi	r18, 0x02	; 2
+ 26c:	31 05       	cpc	r19, r1
+ 26e:	1c f4       	brge	.+6      	; 0x276 <MCAL_DIO_SetPinValue+0x2a>
+ 270:	23 2b       	or	r18, r19
+ 272:	51 f0       	breq	.+20     	; 0x288 <MCAL_DIO_SetPinValue+0x3c>
+ 274:	8b c0       	rjmp	.+278    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 276:	22 30       	cpi	r18, 0x02	; 2
+ 278:	31 05       	cpc	r19, r1
+ 27a:	09 f4       	brne	.+2      	; 0x27e <MCAL_DIO_SetPinValue+0x32>
+ 27c:	44 c0       	rjmp	.+136    	; 0x306 <MCAL_DIO_SetPinValue+0xba>
+ 27e:	23 30       	cpi	r18, 0x03	; 3
+ 280:	31 05       	cpc	r19, r1
+ 282:	09 f0       	breq	.+2      	; 0x286 <MCAL_DIO_SetPinValue+0x3a>
+ 284:	83 c0       	rjmp	.+262    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 286:	5f c0       	rjmp	.+190    	; 0x346 <MCAL_DIO_SetPinValue+0xfa>
+ 288:	66 23       	and	r22, r22
+ 28a:	81 f0       	breq	.+32     	; 0x2ac <MCAL_DIO_SetPinValue+0x60>
+ 28c:	61 30       	cpi	r22, 0x01	; 1
+ 28e:	09 f0       	breq	.+2      	; 0x292 <MCAL_DIO_SetPinValue+0x46>
+ 290:	7d c0       	rjmp	.+250    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 292:	80 91 1b 00 	lds	r24, 0x001B
+ 296:	21 e0       	ldi	r18, 0x01	; 1
+ 298:	30 e0       	ldi	r19, 0x00	; 0
+ 29a:	02 c0       	rjmp	.+4      	; 0x2a0 <MCAL_DIO_SetPinValue+0x54>
+ 29c:	22 0f       	add	r18, r18
+ 29e:	33 1f       	adc	r19, r19
+ 2a0:	4a 95       	dec	r20
+ 2a2:	e2 f7       	brpl	.-8      	; 0x29c <MCAL_DIO_SetPinValue+0x50>
+ 2a4:	82 2b       	or	r24, r18
+ 2a6:	80 93 1b 00 	sts	0x001B, r24
+ 2aa:	1d c0       	rjmp	.+58     	; 0x2e6 <MCAL_DIO_SetPinValue+0x9a>
+ 2ac:	80 91 1b 00 	lds	r24, 0x001B
+ 2b0:	21 e0       	ldi	r18, 0x01	; 1
+ 2b2:	30 e0       	ldi	r19, 0x00	; 0
+ 2b4:	02 c0       	rjmp	.+4      	; 0x2ba <MCAL_DIO_SetPinValue+0x6e>
+ 2b6:	22 0f       	add	r18, r18
+ 2b8:	33 1f       	adc	r19, r19
+ 2ba:	4a 95       	dec	r20
+ 2bc:	e2 f7       	brpl	.-8      	; 0x2b6 <MCAL_DIO_SetPinValue+0x6a>
+ 2be:	20 95       	com	r18
+ 2c0:	28 23       	and	r18, r24
+ 2c2:	20 93 1b 00 	sts	0x001B, r18
+ 2c6:	5d c0       	rjmp	.+186    	; 0x382 <MCAL_DIO_SetPinValue+0x136>
+ 2c8:	66 23       	and	r22, r22
+ 2ca:	81 f0       	breq	.+32     	; 0x2ec <MCAL_DIO_SetPinValue+0xa0>
+ 2cc:	61 30       	cpi	r22, 0x01	; 1
+ 2ce:	09 f0       	breq	.+2      	; 0x2d2 <MCAL_DIO_SetPinValue+0x86>
+ 2d0:	5d c0       	rjmp	.+186    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 2d2:	80 91 17 00 	lds	r24, 0x0017
+ 2d6:	02 c0       	rjmp	.+4      	; 0x2dc <MCAL_DIO_SetPinValue+0x90>
+ 2d8:	22 0f       	add	r18, r18
+ 2da:	33 1f       	adc	r19, r19
+ 2dc:	4a 95       	dec	r20
+ 2de:	e2 f7       	brpl	.-8      	; 0x2d8 <MCAL_DIO_SetPinValue+0x8c>
+ 2e0:	82 2b       	or	r24, r18
+ 2e2:	80 93 17 00 	sts	0x0017, r24
+ 2e6:	80 81       	ld	r24, Z
+ 2e8:	80 68       	ori	r24, 0x80	; 128
+ 2ea:	4d c0       	rjmp	.+154    	; 0x386 <MCAL_DIO_SetPinValue+0x13a>
+ 2ec:	80 91 17 00 	lds	r24, 0x0017
+ 2f0:	02 c0       	rjmp	.+4      	; 0x2f6 <MCAL_DIO_SetPinValue+0xaa>
+ 2f2:	22 0f       	add	r18, r18
+ 2f4:	33 1f       	adc	r19, r19
+ 2f6:	4a 95       	dec	r20
+ 2f8:	e2 f7       	brpl	.-8      	; 0x2f2 <MCAL_DIO_SetPinValue+0xa6>
+ 2fa:	92 2f       	mov	r25, r18
+ 2fc:	90 95       	com	r25
+ 2fe:	98 23       	and	r25, r24
+ 300:	90 93 17 00 	sts	0x0017, r25
+ 304:	3e c0       	rjmp	.+124    	; 0x382 <MCAL_DIO_SetPinValue+0x136>
+ 306:	66 23       	and	r22, r22
+ 308:	81 f0       	breq	.+32     	; 0x32a <MCAL_DIO_SetPinValue+0xde>
+ 30a:	61 30       	cpi	r22, 0x01	; 1
+ 30c:	09 f0       	breq	.+2      	; 0x310 <MCAL_DIO_SetPinValue+0xc4>
+ 30e:	3e c0       	rjmp	.+124    	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 310:	80 91 15 00 	lds	r24, 0x0015
+ 314:	21 e0       	ldi	r18, 0x01	; 1
+ 316:	30 e0       	ldi	r19, 0x00	; 0
+ 318:	02 c0       	rjmp	.+4      	; 0x31e <MCAL_DIO_SetPinValue+0xd2>
+ 31a:	22 0f       	add	r18, r18
+ 31c:	33 1f       	adc	r19, r19
+ 31e:	4a 95       	dec	r20
+ 320:	e2 f7       	brpl	.-8      	; 0x31a <MCAL_DIO_SetPinValue+0xce>
+ 322:	82 2b       	or	r24, r18
+ 324:	80 93 15 00 	sts	0x0015, r24
+ 328:	de cf       	rjmp	.-68     	; 0x2e6 <MCAL_DIO_SetPinValue+0x9a>
+ 32a:	80 91 15 00 	lds	r24, 0x0015
+ 32e:	21 e0       	ldi	r18, 0x01	; 1
+ 330:	30 e0       	ldi	r19, 0x00	; 0
+ 332:	02 c0       	rjmp	.+4      	; 0x338 <MCAL_DIO_SetPinValue+0xec>
+ 334:	22 0f       	add	r18, r18
+ 336:	33 1f       	adc	r19, r19
+ 338:	4a 95       	dec	r20
+ 33a:	e2 f7       	brpl	.-8      	; 0x334 <MCAL_DIO_SetPinValue+0xe8>
+ 33c:	20 95       	com	r18
+ 33e:	28 23       	and	r18, r24
+ 340:	20 93 15 00 	sts	0x0015, r18
+ 344:	1e c0       	rjmp	.+60     	; 0x382 <MCAL_DIO_SetPinValue+0x136>
+ 346:	66 23       	and	r22, r22
+ 348:	79 f0       	breq	.+30     	; 0x368 <MCAL_DIO_SetPinValue+0x11c>
+ 34a:	61 30       	cpi	r22, 0x01	; 1
+ 34c:	f9 f4       	brne	.+62     	; 0x38c <MCAL_DIO_SetPinValue+0x140>
+ 34e:	80 91 12 00 	lds	r24, 0x0012
+ 352:	21 e0       	ldi	r18, 0x01	; 1
+ 354:	30 e0       	ldi	r19, 0x00	; 0
+ 356:	02 c0       	rjmp	.+4      	; 0x35c <MCAL_DIO_SetPinValue+0x110>
+ 358:	22 0f       	add	r18, r18
+ 35a:	33 1f       	adc	r19, r19
+ 35c:	4a 95       	dec	r20
+ 35e:	e2 f7       	brpl	.-8      	; 0x358 <MCAL_DIO_SetPinValue+0x10c>
+ 360:	82 2b       	or	r24, r18
+ 362:	80 93 12 00 	sts	0x0012, r24
+ 366:	bf cf       	rjmp	.-130    	; 0x2e6 <MCAL_DIO_SetPinValue+0x9a>
+ 368:	80 91 12 00 	lds	r24, 0x0012
+ 36c:	21 e0       	ldi	r18, 0x01	; 1
+ 36e:	30 e0       	ldi	r19, 0x00	; 0
+ 370:	02 c0       	rjmp	.+4      	; 0x376 <MCAL_DIO_SetPinValue+0x12a>
+ 372:	22 0f       	add	r18, r18
+ 374:	33 1f       	adc	r19, r19
+ 376:	4a 95       	dec	r20
+ 378:	e2 f7       	brpl	.-8      	; 0x372 <MCAL_DIO_SetPinValue+0x126>
+ 37a:	20 95       	com	r18
+ 37c:	28 23       	and	r18, r24
+ 37e:	20 93 12 00 	sts	0x0012, r18
+ 382:	80 81       	ld	r24, Z
+ 384:	8f 77       	andi	r24, 0x7F	; 127
+ 386:	80 83       	st	Z, r24
+ 388:	81 e0       	ldi	r24, 0x01	; 1
+ 38a:	08 95       	ret
+ 38c:	80 e0       	ldi	r24, 0x00	; 0
+ 38e:	08 95       	ret
+
+00000390 <MCAL_DIO_ReadPinValue>:
+ 390:	fc 01       	movw	r30, r24
+ 392:	db 01       	movw	r26, r22
+ 394:	e0 81       	ld	r30, Z
+ 396:	2e 2f       	mov	r18, r30
+ 398:	26 95       	lsr	r18
+ 39a:	26 95       	lsr	r18
+ 39c:	26 95       	lsr	r18
+ 39e:	27 70       	andi	r18, 0x07	; 7
+ 3a0:	e6 ff       	sbrs	r30, 6
+ 3a2:	26 c0       	rjmp	.+76     	; 0x3f0 <MCAL_DIO_ReadPinValue+0x60>
+ 3a4:	e7 70       	andi	r30, 0x07	; 7
+ 3a6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3a8:	e1 30       	cpi	r30, 0x01	; 1
+ 3aa:	f1 05       	cpc	r31, r1
+ 3ac:	79 f0       	breq	.+30     	; 0x3cc <MCAL_DIO_ReadPinValue+0x3c>
+ 3ae:	e2 30       	cpi	r30, 0x02	; 2
+ 3b0:	f1 05       	cpc	r31, r1
+ 3b2:	1c f4       	brge	.+6      	; 0x3ba <MCAL_DIO_ReadPinValue+0x2a>
+ 3b4:	ef 2b       	or	r30, r31
+ 3b6:	39 f0       	breq	.+14     	; 0x3c6 <MCAL_DIO_ReadPinValue+0x36>
+ 3b8:	1b c0       	rjmp	.+54     	; 0x3f0 <MCAL_DIO_ReadPinValue+0x60>
+ 3ba:	e2 30       	cpi	r30, 0x02	; 2
+ 3bc:	f1 05       	cpc	r31, r1
+ 3be:	49 f0       	breq	.+18     	; 0x3d2 <MCAL_DIO_ReadPinValue+0x42>
+ 3c0:	33 97       	sbiw	r30, 0x03	; 3
+ 3c2:	b1 f4       	brne	.+44     	; 0x3f0 <MCAL_DIO_ReadPinValue+0x60>
+ 3c4:	09 c0       	rjmp	.+18     	; 0x3d8 <MCAL_DIO_ReadPinValue+0x48>
+ 3c6:	80 91 19 00 	lds	r24, 0x0019
+ 3ca:	08 c0       	rjmp	.+16     	; 0x3dc <MCAL_DIO_ReadPinValue+0x4c>
+ 3cc:	80 91 16 00 	lds	r24, 0x0016
+ 3d0:	05 c0       	rjmp	.+10     	; 0x3dc <MCAL_DIO_ReadPinValue+0x4c>
+ 3d2:	80 91 13 00 	lds	r24, 0x0013
+ 3d6:	02 c0       	rjmp	.+4      	; 0x3dc <MCAL_DIO_ReadPinValue+0x4c>
+ 3d8:	80 91 10 00 	lds	r24, 0x0010
+ 3dc:	90 e0       	ldi	r25, 0x00	; 0
+ 3de:	02 c0       	rjmp	.+4      	; 0x3e4 <MCAL_DIO_ReadPinValue+0x54>
+ 3e0:	95 95       	asr	r25
+ 3e2:	87 95       	ror	r24
+ 3e4:	2a 95       	dec	r18
+ 3e6:	e2 f7       	brpl	.-8      	; 0x3e0 <MCAL_DIO_ReadPinValue+0x50>
+ 3e8:	81 70       	andi	r24, 0x01	; 1
+ 3ea:	8c 93       	st	X, r24
+ 3ec:	81 e0       	ldi	r24, 0x01	; 1
+ 3ee:	08 95       	ret
+ 3f0:	80 e0       	ldi	r24, 0x00	; 0
+ 3f2:	08 95       	ret
+
+000003f4 <MCAL_DIO_TogglePinValue>:
+ 3f4:	fc 01       	movw	r30, r24
+ 3f6:	80 81       	ld	r24, Z
+ 3f8:	48 2f       	mov	r20, r24
+ 3fa:	46 95       	lsr	r20
+ 3fc:	46 95       	lsr	r20
+ 3fe:	46 95       	lsr	r20
+ 400:	47 70       	andi	r20, 0x07	; 7
+ 402:	86 fd       	sbrc	r24, 6
+ 404:	53 c0       	rjmp	.+166    	; 0x4ac <MCAL_DIO_TogglePinValue+0xb8>
+ 406:	87 70       	andi	r24, 0x07	; 7
+ 408:	28 2f       	mov	r18, r24
+ 40a:	30 e0       	ldi	r19, 0x00	; 0
+ 40c:	21 30       	cpi	r18, 0x01	; 1
+ 40e:	31 05       	cpc	r19, r1
+ 410:	d9 f0       	breq	.+54     	; 0x448 <MCAL_DIO_TogglePinValue+0x54>
+ 412:	22 30       	cpi	r18, 0x02	; 2
+ 414:	31 05       	cpc	r19, r1
+ 416:	1c f4       	brge	.+6      	; 0x41e <MCAL_DIO_TogglePinValue+0x2a>
+ 418:	23 2b       	or	r18, r19
+ 41a:	49 f0       	breq	.+18     	; 0x42e <MCAL_DIO_TogglePinValue+0x3a>
+ 41c:	47 c0       	rjmp	.+142    	; 0x4ac <MCAL_DIO_TogglePinValue+0xb8>
+ 41e:	22 30       	cpi	r18, 0x02	; 2
+ 420:	31 05       	cpc	r19, r1
+ 422:	e9 f0       	breq	.+58     	; 0x45e <MCAL_DIO_TogglePinValue+0x6a>
+ 424:	23 30       	cpi	r18, 0x03	; 3
+ 426:	31 05       	cpc	r19, r1
+ 428:	09 f0       	breq	.+2      	; 0x42c <MCAL_DIO_TogglePinValue+0x38>
+ 42a:	40 c0       	rjmp	.+128    	; 0x4ac <MCAL_DIO_TogglePinValue+0xb8>
+ 42c:	25 c0       	rjmp	.+74     	; 0x478 <MCAL_DIO_TogglePinValue+0x84>
+ 42e:	20 91 19 00 	lds	r18, 0x0019
+ 432:	81 e0       	ldi	r24, 0x01	; 1
+ 434:	90 e0       	ldi	r25, 0x00	; 0
+ 436:	02 c0       	rjmp	.+4      	; 0x43c <MCAL_DIO_TogglePinValue+0x48>
+ 438:	88 0f       	add	r24, r24
+ 43a:	99 1f       	adc	r25, r25
+ 43c:	4a 95       	dec	r20
+ 43e:	e2 f7       	brpl	.-8      	; 0x438 <MCAL_DIO_TogglePinValue+0x44>
+ 440:	28 27       	eor	r18, r24
+ 442:	20 93 19 00 	sts	0x0019, r18
+ 446:	24 c0       	rjmp	.+72     	; 0x490 <MCAL_DIO_TogglePinValue+0x9c>
+ 448:	80 91 16 00 	lds	r24, 0x0016
+ 44c:	02 c0       	rjmp	.+4      	; 0x452 <MCAL_DIO_TogglePinValue+0x5e>
+ 44e:	22 0f       	add	r18, r18
+ 450:	33 1f       	adc	r19, r19
+ 452:	4a 95       	dec	r20
+ 454:	e2 f7       	brpl	.-8      	; 0x44e <MCAL_DIO_TogglePinValue+0x5a>
+ 456:	82 27       	eor	r24, r18
+ 458:	80 93 16 00 	sts	0x0016, r24
+ 45c:	19 c0       	rjmp	.+50     	; 0x490 <MCAL_DIO_TogglePinValue+0x9c>
+ 45e:	20 91 13 00 	lds	r18, 0x0013
+ 462:	81 e0       	ldi	r24, 0x01	; 1
+ 464:	90 e0       	ldi	r25, 0x00	; 0
+ 466:	02 c0       	rjmp	.+4      	; 0x46c <MCAL_DIO_TogglePinValue+0x78>
+ 468:	88 0f       	add	r24, r24
+ 46a:	99 1f       	adc	r25, r25
+ 46c:	4a 95       	dec	r20
+ 46e:	e2 f7       	brpl	.-8      	; 0x468 <MCAL_DIO_TogglePinValue+0x74>
+ 470:	28 27       	eor	r18, r24
+ 472:	20 93 13 00 	sts	0x0013, r18
+ 476:	0c c0       	rjmp	.+24     	; 0x490 <MCAL_DIO_TogglePinValue+0x9c>
+ 478:	20 91 10 00 	lds	r18, 0x0010
+ 47c:	81 e0       	ldi	r24, 0x01	; 1
+ 47e:	90 e0       	ldi	r25, 0x00	; 0
+ 480:	02 c0       	rjmp	.+4      	; 0x486 <MCAL_DIO_TogglePinValue+0x92>
+ 482:	88 0f       	add	r24, r24
+ 484:	99 1f       	adc	r25, r25
+ 486:	4a 95       	dec	r20
+ 488:	e2 f7       	brpl	.-8      	; 0x482 <MCAL_DIO_TogglePinValue+0x8e>
+ 48a:	28 27       	eor	r18, r24
+ 48c:	20 93 10 00 	sts	0x0010, r18
+ 490:	90 81       	ld	r25, Z
+ 492:	89 2f       	mov	r24, r25
+ 494:	88 1f       	adc	r24, r24
+ 496:	88 27       	eor	r24, r24
+ 498:	88 1f       	adc	r24, r24
+ 49a:	80 95       	com	r24
+ 49c:	87 95       	ror	r24
+ 49e:	88 27       	eor	r24, r24
+ 4a0:	87 95       	ror	r24
+ 4a2:	9f 77       	andi	r25, 0x7F	; 127
+ 4a4:	98 2b       	or	r25, r24
+ 4a6:	90 83       	st	Z, r25
+ 4a8:	81 e0       	ldi	r24, 0x01	; 1
+ 4aa:	08 95       	ret
+ 4ac:	80 e0       	ldi	r24, 0x00	; 0
+ 4ae:	08 95       	ret
+
+000004b0 <MCAL_DIO_InitializePinOutput>:
+ 4b0:	cf 93       	push	r28
+ 4b2:	df 93       	push	r29
+ 4b4:	ec 01       	movw	r28, r24
+ 4b6:	88 81       	ld	r24, Y
+ 4b8:	86 fd       	sbrc	r24, 6
+ 4ba:	07 c0       	rjmp	.+14     	; 0x4ca <MCAL_DIO_InitializePinOutput+0x1a>
+ 4bc:	ce 01       	movw	r24, r28
+ 4be:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_SetPinDirection>
+ 4c2:	ce 01       	movw	r24, r28
+ 4c4:	60 e0       	ldi	r22, 0x00	; 0
+ 4c6:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ 4ca:	80 e0       	ldi	r24, 0x00	; 0
+ 4cc:	df 91       	pop	r29
+ 4ce:	cf 91       	pop	r28
+ 4d0:	08 95       	ret
+
+000004d2 <MCAL_DIO_SetPortDirection>:
+ 4d2:	fc 01       	movw	r30, r24
+ 4d4:	80 81       	ld	r24, Z
+ 4d6:	87 70       	andi	r24, 0x07	; 7
+ 4d8:	90 e0       	ldi	r25, 0x00	; 0
+ 4da:	85 30       	cpi	r24, 0x05	; 5
+ 4dc:	91 05       	cpc	r25, r1
+ 4de:	04 f5       	brge	.+64     	; 0x520 <MCAL_DIO_SetPortDirection+0x4e>
+ 4e0:	81 30       	cpi	r24, 0x01	; 1
+ 4e2:	91 05       	cpc	r25, r1
+ 4e4:	81 f0       	breq	.+32     	; 0x506 <MCAL_DIO_SetPortDirection+0x34>
+ 4e6:	82 30       	cpi	r24, 0x02	; 2
+ 4e8:	91 05       	cpc	r25, r1
+ 4ea:	1c f4       	brge	.+6      	; 0x4f2 <MCAL_DIO_SetPortDirection+0x20>
+ 4ec:	89 2b       	or	r24, r25
+ 4ee:	39 f0       	breq	.+14     	; 0x4fe <MCAL_DIO_SetPortDirection+0x2c>
+ 4f0:	17 c0       	rjmp	.+46     	; 0x520 <MCAL_DIO_SetPortDirection+0x4e>
+ 4f2:	82 30       	cpi	r24, 0x02	; 2
+ 4f4:	91 05       	cpc	r25, r1
+ 4f6:	59 f0       	breq	.+22     	; 0x50e <MCAL_DIO_SetPortDirection+0x3c>
+ 4f8:	03 97       	sbiw	r24, 0x03	; 3
+ 4fa:	91 f4       	brne	.+36     	; 0x520 <MCAL_DIO_SetPortDirection+0x4e>
+ 4fc:	0c c0       	rjmp	.+24     	; 0x516 <MCAL_DIO_SetPortDirection+0x44>
+ 4fe:	82 81       	ldd	r24, Z+2	; 0x02
+ 500:	80 93 1a 00 	sts	0x001A, r24
+ 504:	0b c0       	rjmp	.+22     	; 0x51c <MCAL_DIO_SetPortDirection+0x4a>
+ 506:	82 81       	ldd	r24, Z+2	; 0x02
+ 508:	80 93 18 00 	sts	0x0018, r24
+ 50c:	07 c0       	rjmp	.+14     	; 0x51c <MCAL_DIO_SetPortDirection+0x4a>
+ 50e:	82 81       	ldd	r24, Z+2	; 0x02
+ 510:	80 93 14 00 	sts	0x0014, r24
+ 514:	03 c0       	rjmp	.+6      	; 0x51c <MCAL_DIO_SetPortDirection+0x4a>
+ 516:	82 81       	ldd	r24, Z+2	; 0x02
+ 518:	80 93 11 00 	sts	0x0011, r24
+ 51c:	81 e0       	ldi	r24, 0x01	; 1
+ 51e:	08 95       	ret
+ 520:	80 e0       	ldi	r24, 0x00	; 0
+ 522:	08 95       	ret
+
+00000524 <MCAL_DIO_GetPortDirection>:
+ 524:	fc 01       	movw	r30, r24
+ 526:	db 01       	movw	r26, r22
+ 528:	80 81       	ld	r24, Z
+ 52a:	87 70       	andi	r24, 0x07	; 7
+ 52c:	90 e0       	ldi	r25, 0x00	; 0
+ 52e:	85 30       	cpi	r24, 0x05	; 5
+ 530:	91 05       	cpc	r25, r1
+ 532:	ec f4       	brge	.+58     	; 0x56e <MCAL_DIO_GetPortDirection+0x4a>
+ 534:	81 30       	cpi	r24, 0x01	; 1
+ 536:	91 05       	cpc	r25, r1
+ 538:	79 f0       	breq	.+30     	; 0x558 <MCAL_DIO_GetPortDirection+0x34>
+ 53a:	82 30       	cpi	r24, 0x02	; 2
+ 53c:	91 05       	cpc	r25, r1
+ 53e:	1c f4       	brge	.+6      	; 0x546 <MCAL_DIO_GetPortDirection+0x22>
+ 540:	89 2b       	or	r24, r25
+ 542:	39 f0       	breq	.+14     	; 0x552 <MCAL_DIO_GetPortDirection+0x2e>
+ 544:	14 c0       	rjmp	.+40     	; 0x56e <MCAL_DIO_GetPortDirection+0x4a>
+ 546:	82 30       	cpi	r24, 0x02	; 2
+ 548:	91 05       	cpc	r25, r1
+ 54a:	49 f0       	breq	.+18     	; 0x55e <MCAL_DIO_GetPortDirection+0x3a>
+ 54c:	03 97       	sbiw	r24, 0x03	; 3
+ 54e:	79 f4       	brne	.+30     	; 0x56e <MCAL_DIO_GetPortDirection+0x4a>
+ 550:	09 c0       	rjmp	.+18     	; 0x564 <MCAL_DIO_GetPortDirection+0x40>
+ 552:	80 91 1a 00 	lds	r24, 0x001A
+ 556:	08 c0       	rjmp	.+16     	; 0x568 <MCAL_DIO_GetPortDirection+0x44>
+ 558:	80 91 18 00 	lds	r24, 0x0018
+ 55c:	05 c0       	rjmp	.+10     	; 0x568 <MCAL_DIO_GetPortDirection+0x44>
+ 55e:	80 91 14 00 	lds	r24, 0x0014
+ 562:	02 c0       	rjmp	.+4      	; 0x568 <MCAL_DIO_GetPortDirection+0x44>
+ 564:	80 91 11 00 	lds	r24, 0x0011
+ 568:	8c 93       	st	X, r24
+ 56a:	81 e0       	ldi	r24, 0x01	; 1
+ 56c:	08 95       	ret
+ 56e:	80 e0       	ldi	r24, 0x00	; 0
+ 570:	08 95       	ret
+
+00000572 <MCAL_DIO_SetPortValue>:
+ 572:	fc 01       	movw	r30, r24
+ 574:	80 81       	ld	r24, Z
+ 576:	87 70       	andi	r24, 0x07	; 7
+ 578:	90 e0       	ldi	r25, 0x00	; 0
+ 57a:	85 30       	cpi	r24, 0x05	; 5
+ 57c:	91 05       	cpc	r25, r1
+ 57e:	ec f4       	brge	.+58     	; 0x5ba <MCAL_DIO_SetPortValue+0x48>
+ 580:	81 30       	cpi	r24, 0x01	; 1
+ 582:	91 05       	cpc	r25, r1
+ 584:	79 f0       	breq	.+30     	; 0x5a4 <MCAL_DIO_SetPortValue+0x32>
+ 586:	82 30       	cpi	r24, 0x02	; 2
+ 588:	91 05       	cpc	r25, r1
+ 58a:	1c f4       	brge	.+6      	; 0x592 <MCAL_DIO_SetPortValue+0x20>
+ 58c:	89 2b       	or	r24, r25
+ 58e:	39 f0       	breq	.+14     	; 0x59e <MCAL_DIO_SetPortValue+0x2c>
+ 590:	14 c0       	rjmp	.+40     	; 0x5ba <MCAL_DIO_SetPortValue+0x48>
+ 592:	82 30       	cpi	r24, 0x02	; 2
+ 594:	91 05       	cpc	r25, r1
+ 596:	49 f0       	breq	.+18     	; 0x5aa <MCAL_DIO_SetPortValue+0x38>
+ 598:	03 97       	sbiw	r24, 0x03	; 3
+ 59a:	79 f4       	brne	.+30     	; 0x5ba <MCAL_DIO_SetPortValue+0x48>
+ 59c:	09 c0       	rjmp	.+18     	; 0x5b0 <MCAL_DIO_SetPortValue+0x3e>
+ 59e:	60 93 1b 00 	sts	0x001B, r22
+ 5a2:	08 c0       	rjmp	.+16     	; 0x5b4 <MCAL_DIO_SetPortValue+0x42>
+ 5a4:	60 93 17 00 	sts	0x0017, r22
+ 5a8:	05 c0       	rjmp	.+10     	; 0x5b4 <MCAL_DIO_SetPortValue+0x42>
+ 5aa:	60 93 15 00 	sts	0x0015, r22
+ 5ae:	02 c0       	rjmp	.+4      	; 0x5b4 <MCAL_DIO_SetPortValue+0x42>
+ 5b0:	60 93 12 00 	sts	0x0012, r22
+ 5b4:	61 83       	std	Z+1, r22	; 0x01
+ 5b6:	81 e0       	ldi	r24, 0x01	; 1
+ 5b8:	08 95       	ret
+ 5ba:	80 e0       	ldi	r24, 0x00	; 0
+ 5bc:	08 95       	ret
+
+000005be <MCAL_DIO_ReadPortValue>:
+ 5be:	fc 01       	movw	r30, r24
+ 5c0:	db 01       	movw	r26, r22
+ 5c2:	80 81       	ld	r24, Z
+ 5c4:	87 70       	andi	r24, 0x07	; 7
+ 5c6:	90 e0       	ldi	r25, 0x00	; 0
+ 5c8:	85 30       	cpi	r24, 0x05	; 5
+ 5ca:	91 05       	cpc	r25, r1
+ 5cc:	ec f4       	brge	.+58     	; 0x608 <MCAL_DIO_ReadPortValue+0x4a>
+ 5ce:	81 30       	cpi	r24, 0x01	; 1
+ 5d0:	91 05       	cpc	r25, r1
+ 5d2:	79 f0       	breq	.+30     	; 0x5f2 <MCAL_DIO_ReadPortValue+0x34>
+ 5d4:	82 30       	cpi	r24, 0x02	; 2
+ 5d6:	91 05       	cpc	r25, r1
+ 5d8:	1c f4       	brge	.+6      	; 0x5e0 <MCAL_DIO_ReadPortValue+0x22>
+ 5da:	89 2b       	or	r24, r25
+ 5dc:	39 f0       	breq	.+14     	; 0x5ec <MCAL_DIO_ReadPortValue+0x2e>
+ 5de:	14 c0       	rjmp	.+40     	; 0x608 <MCAL_DIO_ReadPortValue+0x4a>
+ 5e0:	82 30       	cpi	r24, 0x02	; 2
+ 5e2:	91 05       	cpc	r25, r1
+ 5e4:	49 f0       	breq	.+18     	; 0x5f8 <MCAL_DIO_ReadPortValue+0x3a>
+ 5e6:	03 97       	sbiw	r24, 0x03	; 3
+ 5e8:	79 f4       	brne	.+30     	; 0x608 <MCAL_DIO_ReadPortValue+0x4a>
+ 5ea:	09 c0       	rjmp	.+18     	; 0x5fe <MCAL_DIO_ReadPortValue+0x40>
+ 5ec:	80 91 19 00 	lds	r24, 0x0019
+ 5f0:	08 c0       	rjmp	.+16     	; 0x602 <MCAL_DIO_ReadPortValue+0x44>
+ 5f2:	80 91 16 00 	lds	r24, 0x0016
+ 5f6:	05 c0       	rjmp	.+10     	; 0x602 <MCAL_DIO_ReadPortValue+0x44>
+ 5f8:	80 91 13 00 	lds	r24, 0x0013
+ 5fc:	02 c0       	rjmp	.+4      	; 0x602 <MCAL_DIO_ReadPortValue+0x44>
+ 5fe:	80 91 10 00 	lds	r24, 0x0010
+ 602:	8c 93       	st	X, r24
+ 604:	81 e0       	ldi	r24, 0x01	; 1
+ 606:	08 95       	ret
+ 608:	80 e0       	ldi	r24, 0x00	; 0
+ 60a:	08 95       	ret
+
+0000060c <MCAL_DIO_TogglePortValue>:
+ 60c:	fc 01       	movw	r30, r24
+ 60e:	80 81       	ld	r24, Z
+ 610:	87 70       	andi	r24, 0x07	; 7
+ 612:	90 e0       	ldi	r25, 0x00	; 0
+ 614:	85 30       	cpi	r24, 0x05	; 5
+ 616:	91 05       	cpc	r25, r1
+ 618:	2c f5       	brge	.+74     	; 0x664 <MCAL_DIO_TogglePortValue+0x58>
+ 61a:	81 30       	cpi	r24, 0x01	; 1
+ 61c:	91 05       	cpc	r25, r1
+ 61e:	89 f0       	breq	.+34     	; 0x642 <MCAL_DIO_TogglePortValue+0x36>
+ 620:	82 30       	cpi	r24, 0x02	; 2
+ 622:	91 05       	cpc	r25, r1
+ 624:	1c f4       	brge	.+6      	; 0x62c <MCAL_DIO_TogglePortValue+0x20>
+ 626:	89 2b       	or	r24, r25
+ 628:	39 f0       	breq	.+14     	; 0x638 <MCAL_DIO_TogglePortValue+0x2c>
+ 62a:	1c c0       	rjmp	.+56     	; 0x664 <MCAL_DIO_TogglePortValue+0x58>
+ 62c:	82 30       	cpi	r24, 0x02	; 2
+ 62e:	91 05       	cpc	r25, r1
+ 630:	69 f0       	breq	.+26     	; 0x64c <MCAL_DIO_TogglePortValue+0x40>
+ 632:	03 97       	sbiw	r24, 0x03	; 3
+ 634:	b9 f4       	brne	.+46     	; 0x664 <MCAL_DIO_TogglePortValue+0x58>
+ 636:	0f c0       	rjmp	.+30     	; 0x656 <MCAL_DIO_TogglePortValue+0x4a>
+ 638:	81 81       	ldd	r24, Z+1	; 0x01
+ 63a:	80 95       	com	r24
+ 63c:	80 93 19 00 	sts	0x0019, r24
+ 640:	0e c0       	rjmp	.+28     	; 0x65e <MCAL_DIO_TogglePortValue+0x52>
+ 642:	81 81       	ldd	r24, Z+1	; 0x01
+ 644:	80 95       	com	r24
+ 646:	80 93 16 00 	sts	0x0016, r24
+ 64a:	09 c0       	rjmp	.+18     	; 0x65e <MCAL_DIO_TogglePortValue+0x52>
+ 64c:	81 81       	ldd	r24, Z+1	; 0x01
+ 64e:	80 95       	com	r24
+ 650:	80 93 13 00 	sts	0x0013, r24
+ 654:	04 c0       	rjmp	.+8      	; 0x65e <MCAL_DIO_TogglePortValue+0x52>
+ 656:	81 81       	ldd	r24, Z+1	; 0x01
+ 658:	80 95       	com	r24
+ 65a:	80 93 10 00 	sts	0x0010, r24
+ 65e:	81 83       	std	Z+1, r24	; 0x01
+ 660:	81 e0       	ldi	r24, 0x01	; 1
+ 662:	08 95       	ret
+ 664:	80 e0       	ldi	r24, 0x00	; 0
+ 666:	08 95       	ret
+
+00000668 <HAL_Push_Button_ReadBtn>:
+ 668:	af 92       	push	r10
+ 66a:	bf 92       	push	r11
+ 66c:	cf 92       	push	r12
+ 66e:	df 92       	push	r13
+ 670:	ef 92       	push	r14
+ 672:	ff 92       	push	r15
+ 674:	0f 93       	push	r16
+ 676:	1f 93       	push	r17
+ 678:	df 93       	push	r29
+ 67a:	cf 93       	push	r28
+ 67c:	00 d0       	rcall	.+0      	; 0x67e <HAL_Push_Button_ReadBtn+0x16>
+ 67e:	cd b7       	in	r28, 0x3d	; 61
+ 680:	de b7       	in	r29, 0x3e	; 62
+ 682:	8c 01       	movw	r16, r24
+ 684:	7b 01       	movw	r14, r22
+ 686:	19 82       	std	Y+1, r1	; 0x01
+ 688:	fc 01       	movw	r30, r24
+ 68a:	90 81       	ld	r25, Z
+ 68c:	39 2f       	mov	r19, r25
+ 68e:	37 70       	andi	r19, 0x07	; 7
+ 690:	8a 81       	ldd	r24, Y+2	; 0x02
+ 692:	80 7c       	andi	r24, 0xC0	; 192
+ 694:	29 2f       	mov	r18, r25
+ 696:	28 73       	andi	r18, 0x38	; 56
+ 698:	83 2b       	or	r24, r19
+ 69a:	82 2b       	or	r24, r18
+ 69c:	80 64       	ori	r24, 0x40	; 64
+ 69e:	90 78       	andi	r25, 0x80	; 128
+ 6a0:	8f 77       	andi	r24, 0x7F	; 127
+ 6a2:	89 2b       	or	r24, r25
+ 6a4:	8a 83       	std	Y+2, r24	; 0x02
+ 6a6:	5e 01       	movw	r10, r28
+ 6a8:	08 94       	sec
+ 6aa:	a1 1c       	adc	r10, r1
+ 6ac:	b1 1c       	adc	r11, r1
+ 6ae:	ce 01       	movw	r24, r28
+ 6b0:	02 96       	adiw	r24, 0x02	; 2
+ 6b2:	b5 01       	movw	r22, r10
+ 6b4:	0e 94 c8 01 	call	0x390	; 0x390 <MCAL_DIO_ReadPinValue>
+ 6b8:	88 23       	and	r24, r24
+ 6ba:	09 f4       	brne	.+2      	; 0x6be <HAL_Push_Button_ReadBtn+0x56>
+ 6bc:	46 c0       	rjmp	.+140    	; 0x74a <HAL_Push_Button_ReadBtn+0xe2>
+ 6be:	f8 01       	movw	r30, r16
+ 6c0:	80 81       	ld	r24, Z
+ 6c2:	99 81       	ldd	r25, Y+1	; 0x01
+ 6c4:	86 fd       	sbrc	r24, 6
+ 6c6:	1a c0       	rjmp	.+52     	; 0x6fc <HAL_Push_Button_ReadBtn+0x94>
+ 6c8:	91 30       	cpi	r25, 0x01	; 1
+ 6ca:	89 f5       	brne	.+98     	; 0x72e <HAL_Push_Button_ReadBtn+0xc6>
+ 6cc:	80 eb       	ldi	r24, 0xB0	; 176
+ 6ce:	94 e0       	ldi	r25, 0x04	; 4
+ 6d0:	20 e9       	ldi	r18, 0x90	; 144
+ 6d2:	31 e0       	ldi	r19, 0x01	; 1
+ 6d4:	f9 01       	movw	r30, r18
+ 6d6:	31 97       	sbiw	r30, 0x01	; 1
+ 6d8:	f1 f7       	brne	.-4      	; 0x6d6 <HAL_Push_Button_ReadBtn+0x6e>
+ 6da:	01 97       	sbiw	r24, 0x01	; 1
+ 6dc:	d9 f7       	brne	.-10     	; 0x6d4 <HAL_Push_Button_ReadBtn+0x6c>
+ 6de:	05 c0       	rjmp	.+10     	; 0x6ea <HAL_Push_Button_ReadBtn+0x82>
+ 6e0:	c6 01       	movw	r24, r12
+ 6e2:	b5 01       	movw	r22, r10
+ 6e4:	0e 94 c8 01 	call	0x390	; 0x390 <MCAL_DIO_ReadPinValue>
+ 6e8:	05 c0       	rjmp	.+10     	; 0x6f4 <HAL_Push_Button_ReadBtn+0x8c>
+ 6ea:	92 e0       	ldi	r25, 0x02	; 2
+ 6ec:	c9 2e       	mov	r12, r25
+ 6ee:	d1 2c       	mov	r13, r1
+ 6f0:	cc 0e       	add	r12, r28
+ 6f2:	dd 1e       	adc	r13, r29
+ 6f4:	89 81       	ldd	r24, Y+1	; 0x01
+ 6f6:	88 23       	and	r24, r24
+ 6f8:	99 f7       	brne	.-26     	; 0x6e0 <HAL_Push_Button_ReadBtn+0x78>
+ 6fa:	1f c0       	rjmp	.+62     	; 0x73a <HAL_Push_Button_ReadBtn+0xd2>
+ 6fc:	99 23       	and	r25, r25
+ 6fe:	e9 f4       	brne	.+58     	; 0x73a <HAL_Push_Button_ReadBtn+0xd2>
+ 700:	80 eb       	ldi	r24, 0xB0	; 176
+ 702:	94 e0       	ldi	r25, 0x04	; 4
+ 704:	20 e9       	ldi	r18, 0x90	; 144
+ 706:	31 e0       	ldi	r19, 0x01	; 1
+ 708:	f9 01       	movw	r30, r18
+ 70a:	31 97       	sbiw	r30, 0x01	; 1
+ 70c:	f1 f7       	brne	.-4      	; 0x70a <HAL_Push_Button_ReadBtn+0xa2>
+ 70e:	01 97       	sbiw	r24, 0x01	; 1
+ 710:	d9 f7       	brne	.-10     	; 0x708 <HAL_Push_Button_ReadBtn+0xa0>
+ 712:	05 c0       	rjmp	.+10     	; 0x71e <HAL_Push_Button_ReadBtn+0xb6>
+ 714:	c6 01       	movw	r24, r12
+ 716:	b5 01       	movw	r22, r10
+ 718:	0e 94 c8 01 	call	0x390	; 0x390 <MCAL_DIO_ReadPinValue>
+ 71c:	05 c0       	rjmp	.+10     	; 0x728 <HAL_Push_Button_ReadBtn+0xc0>
+ 71e:	82 e0       	ldi	r24, 0x02	; 2
+ 720:	c8 2e       	mov	r12, r24
+ 722:	d1 2c       	mov	r13, r1
+ 724:	cc 0e       	add	r12, r28
+ 726:	dd 1e       	adc	r13, r29
+ 728:	89 81       	ldd	r24, Y+1	; 0x01
+ 72a:	81 30       	cpi	r24, 0x01	; 1
+ 72c:	99 f7       	brne	.-26     	; 0x714 <HAL_Push_Button_ReadBtn+0xac>
+ 72e:	f7 01       	movw	r30, r14
+ 730:	10 82       	st	Z, r1
+ 732:	f8 01       	movw	r30, r16
+ 734:	80 81       	ld	r24, Z
+ 736:	8f 77       	andi	r24, 0x7F	; 127
+ 738:	06 c0       	rjmp	.+12     	; 0x746 <HAL_Push_Button_ReadBtn+0xde>
+ 73a:	81 e0       	ldi	r24, 0x01	; 1
+ 73c:	f7 01       	movw	r30, r14
+ 73e:	80 83       	st	Z, r24
+ 740:	f8 01       	movw	r30, r16
+ 742:	80 81       	ld	r24, Z
+ 744:	80 68       	ori	r24, 0x80	; 128
+ 746:	80 83       	st	Z, r24
+ 748:	81 e0       	ldi	r24, 0x01	; 1
+ 74a:	0f 90       	pop	r0
+ 74c:	0f 90       	pop	r0
+ 74e:	cf 91       	pop	r28
+ 750:	df 91       	pop	r29
+ 752:	1f 91       	pop	r17
+ 754:	0f 91       	pop	r16
+ 756:	ff 90       	pop	r15
+ 758:	ef 90       	pop	r14
+ 75a:	df 90       	pop	r13
+ 75c:	cf 90       	pop	r12
+ 75e:	bf 90       	pop	r11
+ 760:	af 90       	pop	r10
+ 762:	08 95       	ret
+
+00000764 <HAL_Push_Button_BtnConfig>:
+ 764:	df 93       	push	r29
+ 766:	cf 93       	push	r28
+ 768:	0f 92       	push	r0
+ 76a:	cd b7       	in	r28, 0x3d	; 61
+ 76c:	de b7       	in	r29, 0x3e	; 62
+ 76e:	fc 01       	movw	r30, r24
+ 770:	e0 81       	ld	r30, Z
+ 772:	2e 2f       	mov	r18, r30
+ 774:	27 70       	andi	r18, 0x07	; 7
+ 776:	82 2f       	mov	r24, r18
+ 778:	90 e0       	ldi	r25, 0x00	; 0
+ 77a:	05 97       	sbiw	r24, 0x05	; 5
+ 77c:	14 f0       	brlt	.+4      	; 0x782 <HAL_Push_Button_BtnConfig+0x1e>
+ 77e:	80 e0       	ldi	r24, 0x00	; 0
+ 780:	11 c0       	rjmp	.+34     	; 0x7a4 <HAL_Push_Button_BtnConfig+0x40>
+ 782:	89 81       	ldd	r24, Y+1	; 0x01
+ 784:	80 7c       	andi	r24, 0xC0	; 192
+ 786:	9e 2f       	mov	r25, r30
+ 788:	98 73       	andi	r25, 0x38	; 56
+ 78a:	82 2b       	or	r24, r18
+ 78c:	89 2b       	or	r24, r25
+ 78e:	80 64       	ori	r24, 0x40	; 64
+ 790:	e0 78       	andi	r30, 0x80	; 128
+ 792:	8f 77       	andi	r24, 0x7F	; 127
+ 794:	8e 2b       	or	r24, r30
+ 796:	89 83       	std	Y+1, r24	; 0x01
+ 798:	ce 01       	movw	r24, r28
+ 79a:	01 96       	adiw	r24, 0x01	; 1
+ 79c:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_SetPinDirection>
+ 7a0:	81 11       	cpse	r24, r1
+ 7a2:	81 e0       	ldi	r24, 0x01	; 1
+ 7a4:	0f 90       	pop	r0
+ 7a6:	cf 91       	pop	r28
+ 7a8:	df 91       	pop	r29
+ 7aa:	08 95       	ret
+
+000007ac <HAL_LED_LEDArrayPatternBlink>:
+ 7ac:	af 92       	push	r10
+ 7ae:	bf 92       	push	r11
+ 7b0:	cf 92       	push	r12
+ 7b2:	df 92       	push	r13
+ 7b4:	ef 92       	push	r14
+ 7b6:	ff 92       	push	r15
+ 7b8:	0f 93       	push	r16
+ 7ba:	1f 93       	push	r17
+ 7bc:	df 93       	push	r29
+ 7be:	cf 93       	push	r28
+ 7c0:	0f 92       	push	r0
+ 7c2:	cd b7       	in	r28, 0x3d	; 61
+ 7c4:	de b7       	in	r29, 0x3e	; 62
+ 7c6:	7c 01       	movw	r14, r24
+ 7c8:	fc 01       	movw	r30, r24
+ 7ca:	10 81       	ld	r17, Z
+ 7cc:	12 95       	swap	r17
+ 7ce:	11 70       	andi	r17, 0x01	; 1
+ 7d0:	50 e0       	ldi	r21, 0x00	; 0
+ 7d2:	01 e0       	ldi	r16, 0x01	; 1
+ 7d4:	5e 01       	movw	r10, r28
+ 7d6:	08 94       	sec
+ 7d8:	a1 1c       	adc	r10, r1
+ 7da:	b1 1c       	adc	r11, r1
+ 7dc:	80 e9       	ldi	r24, 0x90	; 144
+ 7de:	c8 2e       	mov	r12, r24
+ 7e0:	81 e0       	ldi	r24, 0x01	; 1
+ 7e2:	d8 2e       	mov	r13, r24
+ 7e4:	1e c0       	rjmp	.+60     	; 0x822 <HAL_LED_LEDArrayPatternBlink+0x76>
+ 7e6:	f7 01       	movw	r30, r14
+ 7e8:	61 81       	ldd	r22, Z+1	; 0x01
+ 7ea:	70 e0       	ldi	r23, 0x00	; 0
+ 7ec:	02 c0       	rjmp	.+4      	; 0x7f2 <HAL_LED_LEDArrayPatternBlink+0x46>
+ 7ee:	75 95       	asr	r23
+ 7f0:	67 95       	ror	r22
+ 7f2:	2a 95       	dec	r18
+ 7f4:	e2 f7       	brpl	.-8      	; 0x7ee <HAL_LED_LEDArrayPatternBlink+0x42>
+ 7f6:	60 95       	com	r22
+ 7f8:	61 70       	andi	r22, 0x01	; 1
+ 7fa:	47 70       	andi	r20, 0x07	; 7
+ 7fc:	81 2f       	mov	r24, r17
+ 7fe:	87 70       	andi	r24, 0x07	; 7
+ 800:	88 0f       	add	r24, r24
+ 802:	88 0f       	add	r24, r24
+ 804:	88 0f       	add	r24, r24
+ 806:	96 2f       	mov	r25, r22
+ 808:	97 95       	ror	r25
+ 80a:	99 27       	eor	r25, r25
+ 80c:	97 95       	ror	r25
+ 80e:	84 2b       	or	r24, r20
+ 810:	89 2b       	or	r24, r25
+ 812:	89 83       	std	Y+1, r24	; 0x01
+ 814:	c5 01       	movw	r24, r10
+ 816:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ 81a:	81 11       	cpse	r24, r1
+ 81c:	81 e0       	ldi	r24, 0x01	; 1
+ 81e:	58 2f       	mov	r21, r24
+ 820:	11 50       	subi	r17, 0x01	; 1
+ 822:	21 2f       	mov	r18, r17
+ 824:	30 e0       	ldi	r19, 0x00	; 0
+ 826:	f7 01       	movw	r30, r14
+ 828:	40 81       	ld	r20, Z
+ 82a:	84 2f       	mov	r24, r20
+ 82c:	86 95       	lsr	r24
+ 82e:	86 95       	lsr	r24
+ 830:	86 95       	lsr	r24
+ 832:	81 70       	andi	r24, 0x01	; 1
+ 834:	90 e0       	ldi	r25, 0x00	; 0
+ 836:	28 17       	cp	r18, r24
+ 838:	39 07       	cpc	r19, r25
+ 83a:	ac f6       	brge	.-86     	; 0x7e6 <HAL_LED_LEDArrayPatternBlink+0x3a>
+ 83c:	84 ec       	ldi	r24, 0xC4	; 196
+ 83e:	99 e0       	ldi	r25, 0x09	; 9
+ 840:	f6 01       	movw	r30, r12
+ 842:	31 97       	sbiw	r30, 0x01	; 1
+ 844:	f1 f7       	brne	.-4      	; 0x842 <HAL_LED_LEDArrayPatternBlink+0x96>
+ 846:	01 97       	sbiw	r24, 0x01	; 1
+ 848:	d9 f7       	brne	.-10     	; 0x840 <HAL_LED_LEDArrayPatternBlink+0x94>
+ 84a:	01 50       	subi	r16, 0x01	; 1
+ 84c:	51 f7       	brne	.-44     	; 0x822 <HAL_LED_LEDArrayPatternBlink+0x76>
+ 84e:	85 2f       	mov	r24, r21
+ 850:	0f 90       	pop	r0
+ 852:	cf 91       	pop	r28
+ 854:	df 91       	pop	r29
+ 856:	1f 91       	pop	r17
+ 858:	0f 91       	pop	r16
+ 85a:	ff 90       	pop	r15
+ 85c:	ef 90       	pop	r14
+ 85e:	df 90       	pop	r13
+ 860:	cf 90       	pop	r12
+ 862:	bf 90       	pop	r11
+ 864:	af 90       	pop	r10
+ 866:	08 95       	ret
+
+00000868 <HAL_LED_LEDArrayPatternOff>:
+ 868:	cf 92       	push	r12
+ 86a:	df 92       	push	r13
+ 86c:	ef 92       	push	r14
+ 86e:	ff 92       	push	r15
+ 870:	1f 93       	push	r17
+ 872:	df 93       	push	r29
+ 874:	cf 93       	push	r28
+ 876:	0f 92       	push	r0
+ 878:	cd b7       	in	r28, 0x3d	; 61
+ 87a:	de b7       	in	r29, 0x3e	; 62
+ 87c:	7c 01       	movw	r14, r24
+ 87e:	fc 01       	movw	r30, r24
+ 880:	10 81       	ld	r17, Z
+ 882:	12 95       	swap	r17
+ 884:	11 70       	andi	r17, 0x01	; 1
+ 886:	50 e0       	ldi	r21, 0x00	; 0
+ 888:	6e 01       	movw	r12, r28
+ 88a:	08 94       	sec
+ 88c:	c1 1c       	adc	r12, r1
+ 88e:	d1 1c       	adc	r13, r1
+ 890:	10 c0       	rjmp	.+32     	; 0x8b2 <HAL_LED_LEDArrayPatternOff+0x4a>
+ 892:	47 70       	andi	r20, 0x07	; 7
+ 894:	81 2f       	mov	r24, r17
+ 896:	87 70       	andi	r24, 0x07	; 7
+ 898:	88 0f       	add	r24, r24
+ 89a:	88 0f       	add	r24, r24
+ 89c:	88 0f       	add	r24, r24
+ 89e:	84 2b       	or	r24, r20
+ 8a0:	89 83       	std	Y+1, r24	; 0x01
+ 8a2:	c6 01       	movw	r24, r12
+ 8a4:	60 e0       	ldi	r22, 0x00	; 0
+ 8a6:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ 8aa:	81 11       	cpse	r24, r1
+ 8ac:	81 e0       	ldi	r24, 0x01	; 1
+ 8ae:	58 2f       	mov	r21, r24
+ 8b0:	11 50       	subi	r17, 0x01	; 1
+ 8b2:	21 2f       	mov	r18, r17
+ 8b4:	30 e0       	ldi	r19, 0x00	; 0
+ 8b6:	f7 01       	movw	r30, r14
+ 8b8:	40 81       	ld	r20, Z
+ 8ba:	84 2f       	mov	r24, r20
+ 8bc:	86 95       	lsr	r24
+ 8be:	86 95       	lsr	r24
+ 8c0:	86 95       	lsr	r24
+ 8c2:	81 70       	andi	r24, 0x01	; 1
+ 8c4:	90 e0       	ldi	r25, 0x00	; 0
+ 8c6:	28 17       	cp	r18, r24
+ 8c8:	39 07       	cpc	r19, r25
+ 8ca:	1c f7       	brge	.-58     	; 0x892 <HAL_LED_LEDArrayPatternOff+0x2a>
+ 8cc:	85 2f       	mov	r24, r21
+ 8ce:	0f 90       	pop	r0
+ 8d0:	cf 91       	pop	r28
+ 8d2:	df 91       	pop	r29
+ 8d4:	1f 91       	pop	r17
+ 8d6:	ff 90       	pop	r15
+ 8d8:	ef 90       	pop	r14
+ 8da:	df 90       	pop	r13
+ 8dc:	cf 90       	pop	r12
+ 8de:	08 95       	ret
+
+000008e0 <HAL_LED_LEDArrayPatternOn>:
+ 8e0:	cf 92       	push	r12
+ 8e2:	df 92       	push	r13
+ 8e4:	ef 92       	push	r14
+ 8e6:	ff 92       	push	r15
+ 8e8:	1f 93       	push	r17
+ 8ea:	df 93       	push	r29
+ 8ec:	cf 93       	push	r28
+ 8ee:	0f 92       	push	r0
+ 8f0:	cd b7       	in	r28, 0x3d	; 61
+ 8f2:	de b7       	in	r29, 0x3e	; 62
+ 8f4:	7c 01       	movw	r14, r24
+ 8f6:	fc 01       	movw	r30, r24
+ 8f8:	10 81       	ld	r17, Z
+ 8fa:	12 95       	swap	r17
+ 8fc:	11 70       	andi	r17, 0x01	; 1
+ 8fe:	30 e0       	ldi	r19, 0x00	; 0
+ 900:	6e 01       	movw	r12, r28
+ 902:	08 94       	sec
+ 904:	c1 1c       	adc	r12, r1
+ 906:	d1 1c       	adc	r13, r1
+ 908:	1d c0       	rjmp	.+58     	; 0x944 <HAL_LED_LEDArrayPatternOn+0x64>
+ 90a:	f7 01       	movw	r30, r14
+ 90c:	61 81       	ldd	r22, Z+1	; 0x01
+ 90e:	70 e0       	ldi	r23, 0x00	; 0
+ 910:	02 c0       	rjmp	.+4      	; 0x916 <HAL_LED_LEDArrayPatternOn+0x36>
+ 912:	75 95       	asr	r23
+ 914:	67 95       	ror	r22
+ 916:	4a 95       	dec	r20
+ 918:	e2 f7       	brpl	.-8      	; 0x912 <HAL_LED_LEDArrayPatternOn+0x32>
+ 91a:	61 70       	andi	r22, 0x01	; 1
+ 91c:	27 70       	andi	r18, 0x07	; 7
+ 91e:	81 2f       	mov	r24, r17
+ 920:	87 70       	andi	r24, 0x07	; 7
+ 922:	88 0f       	add	r24, r24
+ 924:	88 0f       	add	r24, r24
+ 926:	88 0f       	add	r24, r24
+ 928:	96 2f       	mov	r25, r22
+ 92a:	97 95       	ror	r25
+ 92c:	99 27       	eor	r25, r25
+ 92e:	97 95       	ror	r25
+ 930:	82 2b       	or	r24, r18
+ 932:	89 2b       	or	r24, r25
+ 934:	89 83       	std	Y+1, r24	; 0x01
+ 936:	c6 01       	movw	r24, r12
+ 938:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ 93c:	81 11       	cpse	r24, r1
+ 93e:	81 e0       	ldi	r24, 0x01	; 1
+ 940:	38 2f       	mov	r19, r24
+ 942:	11 50       	subi	r17, 0x01	; 1
+ 944:	41 2f       	mov	r20, r17
+ 946:	50 e0       	ldi	r21, 0x00	; 0
+ 948:	f7 01       	movw	r30, r14
+ 94a:	20 81       	ld	r18, Z
+ 94c:	82 2f       	mov	r24, r18
+ 94e:	86 95       	lsr	r24
+ 950:	86 95       	lsr	r24
+ 952:	86 95       	lsr	r24
+ 954:	81 70       	andi	r24, 0x01	; 1
+ 956:	90 e0       	ldi	r25, 0x00	; 0
+ 958:	48 17       	cp	r20, r24
+ 95a:	59 07       	cpc	r21, r25
+ 95c:	b4 f6       	brge	.-84     	; 0x90a <HAL_LED_LEDArrayPatternOn+0x2a>
+ 95e:	83 2f       	mov	r24, r19
+ 960:	0f 90       	pop	r0
+ 962:	cf 91       	pop	r28
+ 964:	df 91       	pop	r29
+ 966:	1f 91       	pop	r17
+ 968:	ff 90       	pop	r15
+ 96a:	ef 90       	pop	r14
+ 96c:	df 90       	pop	r13
+ 96e:	cf 90       	pop	r12
+ 970:	08 95       	ret
+
+00000972 <HAL_LED_LEDOff>:
+ 972:	0f 93       	push	r16
+ 974:	1f 93       	push	r17
+ 976:	df 93       	push	r29
+ 978:	cf 93       	push	r28
+ 97a:	0f 92       	push	r0
+ 97c:	cd b7       	in	r28, 0x3d	; 61
+ 97e:	de b7       	in	r29, 0x3e	; 62
+ 980:	8c 01       	movw	r16, r24
+ 982:	fc 01       	movw	r30, r24
+ 984:	80 81       	ld	r24, Z
+ 986:	98 2f       	mov	r25, r24
+ 988:	92 95       	swap	r25
+ 98a:	96 95       	lsr	r25
+ 98c:	96 95       	lsr	r25
+ 98e:	93 70       	andi	r25, 0x03	; 3
+ 990:	97 95       	ror	r25
+ 992:	99 27       	eor	r25, r25
+ 994:	97 95       	ror	r25
+ 996:	8f 73       	andi	r24, 0x3F	; 63
+ 998:	89 2b       	or	r24, r25
+ 99a:	89 83       	std	Y+1, r24	; 0x01
+ 99c:	ce 01       	movw	r24, r28
+ 99e:	01 96       	adiw	r24, 0x01	; 1
+ 9a0:	60 e0       	ldi	r22, 0x00	; 0
+ 9a2:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ 9a6:	88 23       	and	r24, r24
+ 9a8:	71 f0       	breq	.+28     	; 0x9c6 <HAL_LED_LEDOff+0x54>
+ 9aa:	99 81       	ldd	r25, Y+1	; 0x01
+ 9ac:	99 1f       	adc	r25, r25
+ 9ae:	99 27       	eor	r25, r25
+ 9b0:	99 1f       	adc	r25, r25
+ 9b2:	92 95       	swap	r25
+ 9b4:	99 0f       	add	r25, r25
+ 9b6:	99 0f       	add	r25, r25
+ 9b8:	90 7c       	andi	r25, 0xC0	; 192
+ 9ba:	f8 01       	movw	r30, r16
+ 9bc:	80 81       	ld	r24, Z
+ 9be:	8f 7b       	andi	r24, 0xBF	; 191
+ 9c0:	89 2b       	or	r24, r25
+ 9c2:	80 83       	st	Z, r24
+ 9c4:	81 e0       	ldi	r24, 0x01	; 1
+ 9c6:	0f 90       	pop	r0
+ 9c8:	cf 91       	pop	r28
+ 9ca:	df 91       	pop	r29
+ 9cc:	1f 91       	pop	r17
+ 9ce:	0f 91       	pop	r16
+ 9d0:	08 95       	ret
+
+000009d2 <HAL_LED_LEDOn>:
+ 9d2:	0f 93       	push	r16
+ 9d4:	1f 93       	push	r17
+ 9d6:	df 93       	push	r29
+ 9d8:	cf 93       	push	r28
+ 9da:	0f 92       	push	r0
+ 9dc:	cd b7       	in	r28, 0x3d	; 61
+ 9de:	de b7       	in	r29, 0x3e	; 62
+ 9e0:	8c 01       	movw	r16, r24
+ 9e2:	fc 01       	movw	r30, r24
+ 9e4:	80 81       	ld	r24, Z
+ 9e6:	98 2f       	mov	r25, r24
+ 9e8:	92 95       	swap	r25
+ 9ea:	96 95       	lsr	r25
+ 9ec:	96 95       	lsr	r25
+ 9ee:	93 70       	andi	r25, 0x03	; 3
+ 9f0:	97 95       	ror	r25
+ 9f2:	99 27       	eor	r25, r25
+ 9f4:	97 95       	ror	r25
+ 9f6:	8f 73       	andi	r24, 0x3F	; 63
+ 9f8:	89 2b       	or	r24, r25
+ 9fa:	89 83       	std	Y+1, r24	; 0x01
+ 9fc:	ce 01       	movw	r24, r28
+ 9fe:	01 96       	adiw	r24, 0x01	; 1
+ a00:	61 e0       	ldi	r22, 0x01	; 1
+ a02:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ a06:	88 23       	and	r24, r24
+ a08:	71 f0       	breq	.+28     	; 0xa26 <HAL_LED_LEDOn+0x54>
+ a0a:	99 81       	ldd	r25, Y+1	; 0x01
+ a0c:	99 1f       	adc	r25, r25
+ a0e:	99 27       	eor	r25, r25
+ a10:	99 1f       	adc	r25, r25
+ a12:	92 95       	swap	r25
+ a14:	99 0f       	add	r25, r25
+ a16:	99 0f       	add	r25, r25
+ a18:	90 7c       	andi	r25, 0xC0	; 192
+ a1a:	f8 01       	movw	r30, r16
+ a1c:	80 81       	ld	r24, Z
+ a1e:	8f 7b       	andi	r24, 0xBF	; 191
+ a20:	89 2b       	or	r24, r25
+ a22:	80 83       	st	Z, r24
+ a24:	81 e0       	ldi	r24, 0x01	; 1
+ a26:	0f 90       	pop	r0
+ a28:	cf 91       	pop	r28
+ a2a:	df 91       	pop	r29
+ a2c:	1f 91       	pop	r17
+ a2e:	0f 91       	pop	r16
+ a30:	08 95       	ret
+
+00000a32 <HAL_LED_LEDArrayConfig>:
+ a32:	cf 92       	push	r12
+ a34:	df 92       	push	r13
+ a36:	ef 92       	push	r14
+ a38:	ff 92       	push	r15
+ a3a:	1f 93       	push	r17
+ a3c:	df 93       	push	r29
+ a3e:	cf 93       	push	r28
+ a40:	0f 92       	push	r0
+ a42:	cd b7       	in	r28, 0x3d	; 61
+ a44:	de b7       	in	r29, 0x3e	; 62
+ a46:	7c 01       	movw	r14, r24
+ a48:	fc 01       	movw	r30, r24
+ a4a:	20 81       	ld	r18, Z
+ a4c:	82 2f       	mov	r24, r18
+ a4e:	87 70       	andi	r24, 0x07	; 7
+ a50:	90 e0       	ldi	r25, 0x00	; 0
+ a52:	05 97       	sbiw	r24, 0x05	; 5
+ a54:	14 f0       	brlt	.+4      	; 0xa5a <HAL_LED_LEDArrayConfig+0x28>
+ a56:	50 e0       	ldi	r21, 0x00	; 0
+ a58:	25 c0       	rjmp	.+74     	; 0xaa4 <HAL_LED_LEDArrayConfig+0x72>
+ a5a:	12 2f       	mov	r17, r18
+ a5c:	12 95       	swap	r17
+ a5e:	11 70       	andi	r17, 0x01	; 1
+ a60:	50 e0       	ldi	r21, 0x00	; 0
+ a62:	6e 01       	movw	r12, r28
+ a64:	08 94       	sec
+ a66:	c1 1c       	adc	r12, r1
+ a68:	d1 1c       	adc	r13, r1
+ a6a:	0f c0       	rjmp	.+30     	; 0xa8a <HAL_LED_LEDArrayConfig+0x58>
+ a6c:	47 70       	andi	r20, 0x07	; 7
+ a6e:	81 2f       	mov	r24, r17
+ a70:	87 70       	andi	r24, 0x07	; 7
+ a72:	88 0f       	add	r24, r24
+ a74:	88 0f       	add	r24, r24
+ a76:	88 0f       	add	r24, r24
+ a78:	48 2b       	or	r20, r24
+ a7a:	49 83       	std	Y+1, r20	; 0x01
+ a7c:	c6 01       	movw	r24, r12
+ a7e:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_SetPinDirection>
+ a82:	81 11       	cpse	r24, r1
+ a84:	81 e0       	ldi	r24, 0x01	; 1
+ a86:	58 2f       	mov	r21, r24
+ a88:	11 50       	subi	r17, 0x01	; 1
+ a8a:	21 2f       	mov	r18, r17
+ a8c:	30 e0       	ldi	r19, 0x00	; 0
+ a8e:	f7 01       	movw	r30, r14
+ a90:	40 81       	ld	r20, Z
+ a92:	84 2f       	mov	r24, r20
+ a94:	86 95       	lsr	r24
+ a96:	86 95       	lsr	r24
+ a98:	86 95       	lsr	r24
+ a9a:	81 70       	andi	r24, 0x01	; 1
+ a9c:	90 e0       	ldi	r25, 0x00	; 0
+ a9e:	28 17       	cp	r18, r24
+ aa0:	39 07       	cpc	r19, r25
+ aa2:	24 f7       	brge	.-56     	; 0xa6c <HAL_LED_LEDArrayConfig+0x3a>
+ aa4:	85 2f       	mov	r24, r21
+ aa6:	0f 90       	pop	r0
+ aa8:	cf 91       	pop	r28
+ aaa:	df 91       	pop	r29
+ aac:	1f 91       	pop	r17
+ aae:	ff 90       	pop	r15
+ ab0:	ef 90       	pop	r14
+ ab2:	df 90       	pop	r13
+ ab4:	cf 90       	pop	r12
+ ab6:	08 95       	ret
+
+00000ab8 <HAL_LED_LEDConfig>:
+ ab8:	0f 93       	push	r16
+ aba:	1f 93       	push	r17
+ abc:	df 93       	push	r29
+ abe:	cf 93       	push	r28
+ ac0:	0f 92       	push	r0
+ ac2:	cd b7       	in	r28, 0x3d	; 61
+ ac4:	de b7       	in	r29, 0x3e	; 62
+ ac6:	fc 01       	movw	r30, r24
+ ac8:	e0 81       	ld	r30, Z
+ aca:	2e 2f       	mov	r18, r30
+ acc:	27 70       	andi	r18, 0x07	; 7
+ ace:	82 2f       	mov	r24, r18
+ ad0:	90 e0       	ldi	r25, 0x00	; 0
+ ad2:	05 97       	sbiw	r24, 0x05	; 5
+ ad4:	04 f5       	brge	.+64     	; 0xb16 <HAL_LED_LEDConfig+0x5e>
+ ad6:	9e 2f       	mov	r25, r30
+ ad8:	98 73       	andi	r25, 0x38	; 56
+ ada:	e2 95       	swap	r30
+ adc:	e6 95       	lsr	r30
+ ade:	e6 95       	lsr	r30
+ ae0:	e3 70       	andi	r30, 0x03	; 3
+ ae2:	8e 2f       	mov	r24, r30
+ ae4:	87 95       	ror	r24
+ ae6:	88 27       	eor	r24, r24
+ ae8:	87 95       	ror	r24
+ aea:	29 2b       	or	r18, r25
+ aec:	28 2b       	or	r18, r24
+ aee:	29 83       	std	Y+1, r18	; 0x01
+ af0:	8e 01       	movw	r16, r28
+ af2:	0f 5f       	subi	r16, 0xFF	; 255
+ af4:	1f 4f       	sbci	r17, 0xFF	; 255
+ af6:	c8 01       	movw	r24, r16
+ af8:	0e 94 49 00 	call	0x92	; 0x92 <MCAL_DIO_SetPinDirection>
+ afc:	88 23       	and	r24, r24
+ afe:	59 f0       	breq	.+22     	; 0xb16 <HAL_LED_LEDConfig+0x5e>
+ b00:	69 81       	ldd	r22, Y+1	; 0x01
+ b02:	66 1f       	adc	r22, r22
+ b04:	66 27       	eor	r22, r22
+ b06:	66 1f       	adc	r22, r22
+ b08:	c8 01       	movw	r24, r16
+ b0a:	0e 94 26 01 	call	0x24c	; 0x24c <MCAL_DIO_SetPinValue>
+ b0e:	88 23       	and	r24, r24
+ b10:	19 f0       	breq	.+6      	; 0xb18 <HAL_LED_LEDConfig+0x60>
+ b12:	81 e0       	ldi	r24, 0x01	; 1
+ b14:	01 c0       	rjmp	.+2      	; 0xb18 <HAL_LED_LEDConfig+0x60>
+ b16:	80 e0       	ldi	r24, 0x00	; 0
+ b18:	0f 90       	pop	r0
+ b1a:	cf 91       	pop	r28
+ b1c:	df 91       	pop	r29
+ b1e:	1f 91       	pop	r17
+ b20:	0f 91       	pop	r16
+ b22:	08 95       	ret
+
+00000b24 <HAL_LED_LEDBlink>:
+ b24:	af 92       	push	r10
+ b26:	bf 92       	push	r11
+ b28:	cf 92       	push	r12
+ b2a:	df 92       	push	r13
+ b2c:	ef 92       	push	r14
+ b2e:	ff 92       	push	r15
+ b30:	0f 93       	push	r16
+ b32:	1f 93       	push	r17
+ b34:	df 93       	push	r29
+ b36:	cf 93       	push	r28
+ b38:	0f 92       	push	r0
+ b3a:	cd b7       	in	r28, 0x3d	; 61
+ b3c:	de b7       	in	r29, 0x3e	; 62
+ b3e:	8c 01       	movw	r16, r24
+ b40:	fc 01       	movw	r30, r24
+ b42:	80 81       	ld	r24, Z
+ b44:	98 2f       	mov	r25, r24
+ b46:	92 95       	swap	r25
+ b48:	96 95       	lsr	r25
+ b4a:	96 95       	lsr	r25
+ b4c:	93 70       	andi	r25, 0x03	; 3
+ b4e:	97 95       	ror	r25
+ b50:	99 27       	eor	r25, r25
+ b52:	97 95       	ror	r25
+ b54:	8f 73       	andi	r24, 0x3F	; 63
+ b56:	89 2b       	or	r24, r25
+ b58:	89 83       	std	Y+1, r24	; 0x01
+ b5a:	ff 24       	eor	r15, r15
+ b5c:	f3 94       	inc	r15
+ b5e:	6e 01       	movw	r12, r28
+ b60:	08 94       	sec
+ b62:	c1 1c       	adc	r12, r1
+ b64:	d1 1c       	adc	r13, r1
+ b66:	90 e9       	ldi	r25, 0x90	; 144
+ b68:	a9 2e       	mov	r10, r25
+ b6a:	91 e0       	ldi	r25, 0x01	; 1
+ b6c:	b9 2e       	mov	r11, r25
+ b6e:	c6 01       	movw	r24, r12
+ b70:	0e 94 fa 01 	call	0x3f4	; 0x3f4 <MCAL_DIO_TogglePinValue>
+ b74:	88 23       	and	r24, r24
+ b76:	11 f4       	brne	.+4      	; 0xb7c <HAL_LED_LEDBlink+0x58>
+ b78:	ee 24       	eor	r14, r14
+ b7a:	0f c0       	rjmp	.+30     	; 0xb9a <HAL_LED_LEDBlink+0x76>
+ b7c:	99 81       	ldd	r25, Y+1	; 0x01
+ b7e:	99 1f       	adc	r25, r25
+ b80:	99 27       	eor	r25, r25
+ b82:	99 1f       	adc	r25, r25
+ b84:	92 95       	swap	r25
+ b86:	99 0f       	add	r25, r25
+ b88:	99 0f       	add	r25, r25
+ b8a:	90 7c       	andi	r25, 0xC0	; 192
+ b8c:	f8 01       	movw	r30, r16
+ b8e:	80 81       	ld	r24, Z
+ b90:	8f 7b       	andi	r24, 0xBF	; 191
+ b92:	89 2b       	or	r24, r25
+ b94:	80 83       	st	Z, r24
+ b96:	ee 24       	eor	r14, r14
+ b98:	e3 94       	inc	r14
+ b9a:	84 ec       	ldi	r24, 0xC4	; 196
+ b9c:	99 e0       	ldi	r25, 0x09	; 9
+ b9e:	f5 01       	movw	r30, r10
+ ba0:	31 97       	sbiw	r30, 0x01	; 1
+ ba2:	f1 f7       	brne	.-4      	; 0xba0 <HAL_LED_LEDBlink+0x7c>
+ ba4:	01 97       	sbiw	r24, 0x01	; 1
+ ba6:	d9 f7       	brne	.-10     	; 0xb9e <HAL_LED_LEDBlink+0x7a>
+ ba8:	c6 01       	movw	r24, r12
+ baa:	0e 94 fa 01 	call	0x3f4	; 0x3f4 <MCAL_DIO_TogglePinValue>
+ bae:	fa 94       	dec	r15
+ bb0:	f1 f6       	brne	.-68     	; 0xb6e <HAL_LED_LEDBlink+0x4a>
+ bb2:	8e 2d       	mov	r24, r14
+ bb4:	0f 90       	pop	r0
+ bb6:	cf 91       	pop	r28
+ bb8:	df 91       	pop	r29
+ bba:	1f 91       	pop	r17
+ bbc:	0f 91       	pop	r16
+ bbe:	ff 90       	pop	r15
+ bc0:	ef 90       	pop	r14
+ bc2:	df 90       	pop	r13
+ bc4:	cf 90       	pop	r12
+ bc6:	bf 90       	pop	r11
+ bc8:	af 90       	pop	r10
+ bca:	08 95       	ret
+
+00000bcc <HAL_LED_LEDToggle>:
+ bcc:	0f 93       	push	r16
+ bce:	1f 93       	push	r17
+ bd0:	df 93       	push	r29
+ bd2:	cf 93       	push	r28
+ bd4:	0f 92       	push	r0
+ bd6:	cd b7       	in	r28, 0x3d	; 61
+ bd8:	de b7       	in	r29, 0x3e	; 62
+ bda:	8c 01       	movw	r16, r24
+ bdc:	fc 01       	movw	r30, r24
+ bde:	80 81       	ld	r24, Z
+ be0:	98 2f       	mov	r25, r24
+ be2:	92 95       	swap	r25
+ be4:	96 95       	lsr	r25
+ be6:	96 95       	lsr	r25
+ be8:	93 70       	andi	r25, 0x03	; 3
+ bea:	97 95       	ror	r25
+ bec:	99 27       	eor	r25, r25
+ bee:	97 95       	ror	r25
+ bf0:	8f 73       	andi	r24, 0x3F	; 63
+ bf2:	89 2b       	or	r24, r25
+ bf4:	89 83       	std	Y+1, r24	; 0x01
+ bf6:	ce 01       	movw	r24, r28
+ bf8:	01 96       	adiw	r24, 0x01	; 1
+ bfa:	0e 94 fa 01 	call	0x3f4	; 0x3f4 <MCAL_DIO_TogglePinValue>
+ bfe:	88 23       	and	r24, r24
+ c00:	71 f0       	breq	.+28     	; 0xc1e <HAL_LED_LEDToggle+0x52>
+ c02:	99 81       	ldd	r25, Y+1	; 0x01
+ c04:	99 1f       	adc	r25, r25
+ c06:	99 27       	eor	r25, r25
+ c08:	99 1f       	adc	r25, r25
+ c0a:	92 95       	swap	r25
+ c0c:	99 0f       	add	r25, r25
+ c0e:	99 0f       	add	r25, r25
+ c10:	90 7c       	andi	r25, 0xC0	; 192
+ c12:	f8 01       	movw	r30, r16
+ c14:	80 81       	ld	r24, Z
+ c16:	8f 7b       	andi	r24, 0xBF	; 191
+ c18:	89 2b       	or	r24, r25
+ c1a:	80 83       	st	Z, r24
+ c1c:	81 e0       	ldi	r24, 0x01	; 1
+ c1e:	0f 90       	pop	r0
+ c20:	cf 91       	pop	r28
+ c22:	df 91       	pop	r29
+ c24:	1f 91       	pop	r17
+ c26:	0f 91       	pop	r16
+ c28:	08 95       	ret
+
+00000c2a <main>:
+ c2a:	80 e6       	ldi	r24, 0x60	; 96
+ c2c:	90 e0       	ldi	r25, 0x00	; 0
+ c2e:	0e 94 5c 05 	call	0xab8	; 0xab8 <HAL_LED_LEDConfig>
+ c32:	81 e6       	ldi	r24, 0x61	; 97
+ c34:	90 e0       	ldi	r25, 0x00	; 0
+ c36:	0e 94 b2 03 	call	0x764	; 0x764 <HAL_Push_Button_BtnConfig>
+ c3a:	81 e6       	ldi	r24, 0x61	; 97
+ c3c:	90 e0       	ldi	r25, 0x00	; 0
+ c3e:	62 e6       	ldi	r22, 0x62	; 98
+ c40:	70 e0       	ldi	r23, 0x00	; 0
+ c42:	0e 94 34 03 	call	0x668	; 0x668 <HAL_Push_Button_ReadBtn>
+ c46:	80 91 62 00 	lds	r24, 0x0062
+ c4a:	81 30       	cpi	r24, 0x01	; 1
+ c4c:	b1 f7       	brne	.-20     	; 0xc3a <main+0x10>
+ c4e:	80 e6       	ldi	r24, 0x60	; 96
+ c50:	90 e0       	ldi	r25, 0x00	; 0
+ c52:	0e 94 92 05 	call	0xb24	; 0xb24 <HAL_LED_LEDBlink>
+ c56:	f1 cf       	rjmp	.-30     	; 0xc3a <main+0x10>
+
+00000c58 <_exit>:
+ c58:	f8 94       	cli
+
+00000c5a <__stop_program>:
+ c5a:	ff cf       	rjmp	.-2      	; 0xc5a <__stop_program>
