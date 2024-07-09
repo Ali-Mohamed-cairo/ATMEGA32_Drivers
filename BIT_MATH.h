@@ -12,6 +12,11 @@
 #include "PLATFORM_TYPES.h"
 
 /**********************************************************************/
+#define CLEAR             0
+#define SET               1
+
+
+/**********************************************************************/
 
 #define _8_BIT_ARCHI             8
 #define _16_BIT_ARCHI            16
@@ -29,6 +34,16 @@
 #if (MC_ARCHI == _8_BIT_ARCHI || \
      MC_ARCHI == _16_BIT_ARCHI || \
      MC_ARCHI == _32_BIT_ARCHI  )
+	#define _0TH_BIT                  0x0
+    #define _1st_BIT                  0x1
+    #define _2nd_BIT                  0x2
+    #define _3rd_BIT                  0x3
+    #define _4TH_BIT                  0x4
+    #define _5TH_BIT                  0x5
+    #define _6TH_BIT                  0x6
+    #define _7TH_BIT                  0x7
+
+
     #define _0TH_BIT_MASK             0x1
     #define _1st_BIT_MASK             0x2
     #define _2nd_BIT_MASK             0x4
@@ -42,6 +57,15 @@
 
 #if (MC_ARCHI == _16_BIT_ARCHI || \
      MC_ARCHI == _32_BIT_ARCHI  )
+	#define _8TH_BIT                  0x8
+    #define _9TH_BIT                  0x9
+    #define _10TH_BIT                 0xA
+    #define _11TH_BIT                 0xB
+    #define _12TH_BIT                 0xC
+    #define _13TH_BIT                 0xD
+    #define _14TH_BIT                 0xE
+    #define _15TH_BIT                 0xF
+
     #define _8TH_BIT_MASK             0x100
     #define _9TH_BIT_MASK             0x200
     #define _10TH_BIT_MASK            0x400
@@ -53,6 +77,23 @@
 #endif
 
 #if(MC_ARCHI == _32_BIT_ARCHI)
+	#define _16TH_BIT                 0x10
+    #define _17TH_BIT                 0x11
+    #define _18TH_BIT                 0x12
+    #define _19TH_BIT                 0x13
+    #define _20TH_BIT                 0x14
+    #define _21TH_BIT                 0x15
+    #define _22TH_BIT                 0x16
+    #define _23TH_BIT                 0x17
+    #define _24TH_BIT                 0x18
+    #define _25TH_BIT                 0x19
+    #define _26TH_BIT                 0x1A
+    #define _27TH_BIT                 0x1B
+    #define _28TH_BIT                 0x1C
+    #define _29TH_BIT                 0x1D
+    #define _30TH_BIT                 0x1E
+    #define _31TH_BIT                 0x1F
+
     #define _16TH_BIT_MASK            0x10000
     #define _17TH_BIT_MASK            0x20000
     #define _18TH_BIT_MASK            0x40000

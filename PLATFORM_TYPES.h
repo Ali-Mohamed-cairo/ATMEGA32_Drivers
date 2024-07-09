@@ -14,7 +14,7 @@ Pointer sizes in different CPU architectures:
 32-bit architecture CPU -> 4 Byte
 64-bit architecture CPU -> 8 Byte
 */
-
+#define NULL_PTR ((void*)0)
 
 
 /**********In all cases "char" -> 1 Byte*********************/

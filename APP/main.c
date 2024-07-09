@@ -2,6 +2,7 @@
 
 
 #include "APP_Init.h"
+#include "ISRs/ISRs.h"
 
 uint8 Global_KeyRead = '\0';
 uint8 Global_BtnRead = '\0';
@@ -91,3 +92,5 @@ int main()
 
     return 0;
 }
+
+

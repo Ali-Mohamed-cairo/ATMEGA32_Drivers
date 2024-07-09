@@ -19,6 +19,8 @@
 #include "../LED/LED_Interface.h"
 #include "../Push_Button/Push_Button_Interface.h"
 #include "../KeyPad/KeyPad_Interface.h"
+#include "../GIE/GIE_Interface.h"
+
 
 
 extern KeyPad_t key;
