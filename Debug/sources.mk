@@ -21,9 +21,11 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 APP \
+APP/ISRs \
 HAL/KeyPad \
 HAL/LED \
 HAL/Push_Button \
 MCAL/DIO \
 MCAL/EXT_Interrupt \
+MCAL/GIE \
 

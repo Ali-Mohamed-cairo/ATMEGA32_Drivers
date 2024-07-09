@@ -19,7 +19,10 @@ APP/APP_Init.o APP/APP_Init.o: ../APP/APP_Init.c ../APP/APP_Init.h \
   D:\SDK\ATMEGA_Drivers\APP/../BIT_MATH.h \
   D:\SDK\ATMEGA_Drivers\APP/../PLATFORM_TYPES.h \
   D:\SDK\ATMEGA_Drivers\MCAL\DIO/DIO_Interface.h \
-  D:\SDK\ATMEGA_Drivers\HAL\LED/../KeyPad/KeyPad_Config.h
+  D:\SDK\ATMEGA_Drivers\HAL\LED/../KeyPad/KeyPad_Config.h \
+  D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Interface.h \
+  D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Config.h \
+  D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Private.h
 
 ../APP/APP_Init.h:
 
@@ -66,3 +69,9 @@ D:\SDK\ATMEGA_Drivers\APP/../PLATFORM_TYPES.h:
 D:\SDK\ATMEGA_Drivers\MCAL\DIO/DIO_Interface.h:
 
 D:\SDK\ATMEGA_Drivers\HAL\LED/../KeyPad/KeyPad_Config.h:
+
+D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Interface.h:
+
+D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Config.h:
+
+D:\SDK\ATMEGA_Drivers\MCAL\DIO/../GIE/GIE_Private.h:

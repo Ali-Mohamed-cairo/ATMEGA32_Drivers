@@ -30,13 +30,13 @@ Std_ReturnType MCAL_EXT_Interrupt_EXTIntStatus(const EXTINT_Config_t Copy_EXTInt
 	    case EXTINT0:
 	    	SET_BIT(GICR_REG, EXTINT0);
 	    	MCUCR_REG.ISC0_BITs = Copy_EXTInt.TriggerEvent;
-	    	MCAL_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    	MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
             Local_ErrorStatus = E_OK;
 	    	break;
 	    case EXTINT1:
 	    	SET_BIT(GICR_REG, EXTINT1);
 	    	MCUCR_REG.ISC1_BITs = Copy_EXTInt.TriggerEvent;
-	    	MCAL_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    	MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
 	    	Local_ErrorStatus = E_OK;
 	    	break;
 	    case EXTINT2:
@@ -44,7 +44,7 @@ Std_ReturnType MCAL_EXT_Interrupt_EXTIntStatus(const EXTINT_Config_t Copy_EXTInt
 	    	if((Copy_EXTInt.TriggerEvent != LOW_LEVEL) || (Copy_EXTInt.TriggerEvent != IOC))
 	    	{
 	    		MCUCSR_REG.ISC2_BIT6 = ((Copy_EXTInt.TriggerEvent) & 1);
-	    		MCAL_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    		MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
 	    	    Local_ErrorStatus = E_OK;
 	    	}
 	    	else
