@@ -24,6 +24,10 @@
 #define _XTAL_FREQ              16000000 //For delay function
 
 /*********************************REQUIRED ENUMS*******************************/
+typedef enum{
+	MC_Sink,
+	MC_Source
+}MC_Connect_TypeToLED_t;
 
 typedef enum{
     LED_PIN0 = 0,
@@ -53,11 +57,13 @@ typedef enum{
 typedef struct{
     uint8 PORT_ID    : 3;
     uint8 Pin_Num    : 3;
-    uint8 LED_Status : 1;/*ON or OFF*/
+    MC_Connect_TypeToLED_t LED_Connection : 1;
+    LED_Status LED_LastStatus : 1;/*ON or OFF*/
 }LED_t;
 
 typedef struct{
     uint8 PORT_ID   : 3;
+    MC_Connect_TypeToLED_t LEDs_Connection : 1;
     uint8 Start_Pin;
     uint8 End_Pin;
     uint8 Pattern_Value;/*It's given as binary value with each bit represents a led and 1 means ON but 0 means OFF*/
@@ -65,17 +71,17 @@ typedef struct{
 
 /***********************************APIs***************************************/
 
-Std_ReturnType HAL_LED_LEDConfig(const LED_t *Copy_LED);
+Std_ReturnType HAL_LED_LEDConfig(LED_t *Copy_LED);
 Std_ReturnType HAL_LED_LEDOn(LED_t *Copy_LED);
 Std_ReturnType HAL_LED_LEDOff(LED_t *Copy_LED);
 Std_ReturnType HAL_LED_LEDToggle(LED_t *Copy_LED);
-Std_ReturnType HAL_LED_LEDBlink(LED_t *Copy_LED);// NOT implemented yet
+Std_ReturnType HAL_LED_LEDBlink(LED_t *Copy_LED, uint8 Copy_BlinkingTimes);// NOT implemented yet
 
 
 Std_ReturnType HAL_LED_LEDArrayConfig(const LEDArray_t *Copy_LEDArray);
 Std_ReturnType HAL_LED_LEDArrayPatternOn(const LEDArray_t *Copy_LEDArray);
 Std_ReturnType HAL_LED_LEDArrayPatternOff(const LEDArray_t *Copy_LEDArray);
-Std_ReturnType HAL_LED_LEDArrayPatternBlink(const LEDArray_t *Copy_LEDArray);// NOT implemented yet
+Std_ReturnType HAL_LED_LEDArrayPatternBlink(const LEDArray_t *Copy_LEDArray, uint8 Copy_BlinkingTimes);// NOT implemented yet
 
 #endif	/* LED_INTERFACE_H */
 

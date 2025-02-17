@@ -4,93 +4,41 @@
 #include "APP_Init.h"
 #include "ISRs/ISRs.h"
 
-uint8 Global_KeyRead = '\0';
-uint8 Global_BtnRead = '\0';
-Std_ReturnType ReturnStatus = E_NOT_OK;
+SSD_Module_t SSD_an = {
+		.SSD_Type = COMMON_ANODE,
+		.Decoder_Type = SOFTWARE_DEC,
+        .SSD_Common = {.PORT_ID = DIO_PORTA, .Pin_Num = DIO_PIN1, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin0_A = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN0, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin1_B = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN1, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin2_C = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN2, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin3_D = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN3, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin4_E = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN4, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin5_F = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN5, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin6_G = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN6, .Pin_Direction = DIO_PIN_OUTPUT},
+        .ValueToBeDisplayed = 4
+};
+
+SSD_Module_t SSD_Cath = {
+		.SSD_Type = COMMON_CATHODE,
+		.Decoder_Type = HEX_DEC,
+        .SSD_Common = {.PORT_ID = DIO_PORTB, .Pin_Num = DIO_PIN1, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin0_A = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN0, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin1_B = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN1, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin2_C = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN2, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin3_D = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN3, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin4_E = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN4, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin5_F = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN5, .Pin_Direction = DIO_PIN_OUTPUT},
+		.SSD_Pin6_G = {.PORT_ID = DIO_PORTC, .Pin_Num = DIO_PIN6, .Pin_Direction = DIO_PIN_OUTPUT},
+        .ValueToBeDisplayed = 3
+};
 
 int main()
 {
-	APP_APPInit();
+	HAL_SSD_SSDInit(&SSD_an, MC_Generate_NUM);
+	HAL_SSD_SSDDisplayNumWithSoftwareDecoder(&SSD_an);
+	while(1)
+	{
 
-    /*1 -  ReturnStatus = MCAL_DIO_SetPinDirection(&Btn_1);
-    ReturnStatus = MCAL_DIO_InitializePinOutput(&LED_1);
-    ReturnStatus = MCAL_DIO_InitializePinOutput(&LED_2);
-    ReturnStatus = MCAL_DIO_InitializePinOutput(&LED_3);  */
-
-    /*2 -  ReturnStatus = MCAL_DIO_SetPortDirection(&portd);
-    ReturnStatus = MCAL_DIO_SetPortDirection(&portc);
-    ReturnStatus = MCAL_DIO_SetPortValue(&portc, portc.Port_Value);*/
-
-
-    while(1)
-    {
-    	while('\0' == Global_BtnRead && '\0' == Global_KeyRead)
-    	{
-    		HAL_KeyPad_KeyPadReadCharacter(&key, &Global_KeyRead);
-    		HAL_Push_Button_ReadBtn(&Btn, &Global_BtnRead);
-    	}
-
-    	if(Global_BtnRead != '\0')
-    	{
-    		HAL_LED_LEDBlink(&led0);
-    		HAL_LED_LEDBlink(&led1);
-    		HAL_LED_LEDBlink(&led2);
-    	}
-    	else if(Global_KeyRead != '\0')
-    	{
-    		if(Global_KeyRead == '1')
-    		{
-    			HAL_LED_LEDBlink(&led0);
-    		}
-
-    		else if(Global_KeyRead == '5')
-    		{
-    			HAL_LED_LEDBlink(&led1);
-    		}
-
-    		else if(Global_KeyRead == '9')
-    		{
-    			 HAL_LED_LEDBlink(&led2);
-    		}
-    	}
-    	Global_KeyRead = '\0';
-    	Global_BtnRead = '\0';
-        /*2 -  while(Global_BtnRead == 0x00)
-        {
-            ReturnStatus = MCAL_DIO_ReadPortValue(&portd, &Global_BtnRead);
-        }
-        Global_BtnRead = E_OK;
-        ReturnStatus = MCAL_DIO_TogglePortValue(&portc);*/
-
-        /*1 -  while(Global_BtnRead == E_OK)
-        {
-            ReturnStatus = MCAL_DIO_ReadPinValue(&Btn_1, &Global_BtnRead);
-        }
-        Global_BtnRead = E_OK;
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_1, DIO_HIGH);
-        while(Global_BtnRead == E_OK)
-        {
-            ReturnStatus = MCAL_DIO_ReadPinValue(&Btn_1, &Global_BtnRead);
-        }
-        Global_BtnRead = E_OK;
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_2, DIO_HIGH);
-        while(Global_BtnRead == E_OK)
-        {
-            ReturnStatus = MCAL_DIO_ReadPinValue(&Btn_1, &Global_BtnRead);
-        }
-        Global_BtnRead = E_OK;
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_3, DIO_HIGH);
-        while(Global_BtnRead == E_OK)
-        {
-            ReturnStatus = MCAL_DIO_ReadPinValue(&Btn_1, &Global_BtnRead);
-        }
-        Global_BtnRead = E_OK;
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_1, DIO_LOW);
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_2, DIO_LOW);
-        ReturnStatus = MCAL_DIO_SetPinValue(&LED_3, DIO_LOW);*/
-    }
-
-    return 0;
+	}
+	return 0;
 }
-
-

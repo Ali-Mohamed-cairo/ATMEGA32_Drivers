@@ -5,6 +5,8 @@
  * Created on March 6, 2024, 12:48 PM
  */
 
+#include <avr/interrupt.h>
+
 #include "EXT_Interrupt_Interface.h"
 #include "EXT_Interrupt_Config.h"
 #include "EXT_Interrupt_Private.h"
@@ -28,23 +30,23 @@ Std_ReturnType MCAL_EXT_Interrupt_EXTIntStatus(const EXTINT_Config_t Copy_EXTInt
 		switch(Copy_EXTInt.INTNum)
 	    {
 	    case EXTINT0:
-	    	SET_BIT(GICR_REG, EXTINT0);
 	    	MCUCR_REG.ISC0_BITs = Copy_EXTInt.TriggerEvent;
 	    	MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    	SET_BIT(GICR_REG, EXTINT0);
             Local_ErrorStatus = E_OK;
 	    	break;
 	    case EXTINT1:
-	    	SET_BIT(GICR_REG, EXTINT1);
 	    	MCUCR_REG.ISC1_BITs = Copy_EXTInt.TriggerEvent;
 	    	MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    	SET_BIT(GICR_REG, EXTINT1);
 	    	Local_ErrorStatus = E_OK;
 	    	break;
 	    case EXTINT2:
-	    	SET_BIT(GICR_REG, EXTINT2);
 	    	if((Copy_EXTInt.TriggerEvent != LOW_LEVEL) || (Copy_EXTInt.TriggerEvent != IOC))
 	    	{
 	    		MCUCSR_REG.ISC2_BIT6 = ((Copy_EXTInt.TriggerEvent) & 1);
 	    		MCAL_EXT_Interrupt_ClearEXTIntFlag(Copy_EXTInt);
+	    		SET_BIT(GICR_REG, EXTINT2);
 	    	    Local_ErrorStatus = E_OK;
 	    	}
 	    	else
@@ -93,4 +95,19 @@ Std_ReturnType MCAL_EXT_Interrupt_SetEXTINT2CallBack(void (*Copy_CallBackPtr)(vo
 	EXT_Interrupt_EXTINT2_CallBack = Copy_CallBackPtr;
 	Local_ErrorStatus = E_OK;
 	return Local_ErrorStatus;
+}
+
+ISR(INT0_vect)
+{
+	EXT_Interrupt_EXTINT0_CallBack();
+}
+
+ISR(INT1_vect)
+{
+	EXT_Interrupt_EXTINT1_CallBack();
+}
+
+ISR(INT2_vect)
+{
+	EXT_Interrupt_EXTINT2_CallBack();
 }

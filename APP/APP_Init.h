@@ -20,6 +20,13 @@
 #include "../Push_Button/Push_Button_Interface.h"
 #include "../KeyPad/KeyPad_Interface.h"
 #include "../GIE/GIE_Interface.h"
+#include "../MCAL/EXT_Interrupt/EXT_Interrupt_Interface.h"
+#include "../MCAL/UART/UART_Interface.h"
+#include "../MCAL/ADC/ADC_Interface.h"
+#include "../HAL/LCD/LCD_Interface.h"
+#include "../HAL/SSD/SSD_Interface.h"
+#include "../HAL/POT/POT_Interface.h"
+#include "../HAL/Buzzer/Buzzer_Interface.h"
 
 
 

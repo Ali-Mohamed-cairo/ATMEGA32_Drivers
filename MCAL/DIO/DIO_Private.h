@@ -238,7 +238,7 @@ typedef union {
 /**< SFIOR_REG is the register containing the bit(PUD_BIT) which en/disable the Internal Pull-Up option*/
 
 #define SFIOR_REG (*((volatile uint8 *)0x50))
-#define PUB_BIT   0x2
+#define PUD_BIT   0x2
 
 #endif	/* DIO_PRIVATE_H */
 

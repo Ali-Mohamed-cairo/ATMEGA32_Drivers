@@ -47,17 +47,17 @@ KeyPad_t key = {
 LED_t led0 = {
 	.PORT_ID = LED_PORTC,
 	.Pin_Num = LED_PIN2,
-	.LED_Status = LED_OFF
+
 };
 LED_t led1 = {
 	.PORT_ID = LED_PORTC,
 	.Pin_Num = LED_PIN7,
-	.LED_Status = LED_OFF
+	.LED_LastStatus = LED_OFF
 };
 LED_t led2 = {
 	.PORT_ID = LED_PORTD,
 	.Pin_Num = LED_PIN3,
-	.LED_Status = LED_OFF
+	.LED_LastStatus = LED_OFF
 };
 
 PushBtn_t Btn = {

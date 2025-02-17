@@ -22,10 +22,19 @@ C_DEPS :=
 SUBDIRS := \
 APP \
 APP/ISRs \
+HAL/Buzzer \
 HAL/KeyPad \
+HAL/LCD \
 HAL/LED \
+HAL/POT \
 HAL/Push_Button \
+HAL/SSD \
+MCAL/ADC \
 MCAL/DIO \
 MCAL/EXT_Interrupt \
 MCAL/GIE \
+MCAL/SPI \
+MCAL/Timers \
+MCAL/UART \
+MCAL/WDT \
 

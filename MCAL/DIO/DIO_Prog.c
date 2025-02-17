@@ -32,12 +32,12 @@ Std_ReturnType MCAL_DIO_SetPinDirection(const Pin_Conig_t *Copy_PinInfo)
                     case DIO_PIN_INPUT:
                         CLEAR_BIT(DDRA_REG.DDRA_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTA_REG.PORTA_REGISTER, Copy_PinInfo->Pin_Num);
-                        SET_BIT(SFIOR_REG, PUB_BIT);
+                        SET_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     case DIO_PIN_INPUT_PULL_UP:
                         CLEAR_BIT(DDRA_REG.DDRA_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTA_REG.PORTA_REGISTER, Copy_PinInfo->Pin_Num);
-                        CLEAR_BIT(SFIOR_REG, PUB_BIT);
+                        CLEAR_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     default:
                         Local_ErrorStatus = E_NOT_OK;
@@ -54,12 +54,12 @@ Std_ReturnType MCAL_DIO_SetPinDirection(const Pin_Conig_t *Copy_PinInfo)
                     case DIO_PIN_INPUT:
                         CLEAR_BIT(DDRB_REG.DDRB_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTB_REG.PORTB_REGISTER, Copy_PinInfo->Pin_Num);
-                        SET_BIT(SFIOR_REG, PUB_BIT);
+                        SET_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     case DIO_PIN_INPUT_PULL_UP:
                         CLEAR_BIT(DDRB_REG.DDRB_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTB_REG.PORTB_REGISTER, Copy_PinInfo->Pin_Num);
-                        CLEAR_BIT(SFIOR_REG, PUB_BIT);
+                        CLEAR_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     default:
                         Local_ErrorStatus = E_NOT_OK;
@@ -76,12 +76,12 @@ Std_ReturnType MCAL_DIO_SetPinDirection(const Pin_Conig_t *Copy_PinInfo)
                     case DIO_PIN_INPUT:
                         CLEAR_BIT(DDRC_REG.DDRC_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTC_REG.PORTC_REGISTER, Copy_PinInfo->Pin_Num);
-                        SET_BIT(SFIOR_REG, PUB_BIT);
+                        SET_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     case DIO_PIN_INPUT_PULL_UP:
                         CLEAR_BIT(DDRC_REG.DDRC_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTC_REG.PORTC_REGISTER, Copy_PinInfo->Pin_Num);
-                        CLEAR_BIT(SFIOR_REG, PUB_BIT);
+                        CLEAR_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     default:
                         Local_ErrorStatus = E_NOT_OK;
@@ -98,12 +98,12 @@ Std_ReturnType MCAL_DIO_SetPinDirection(const Pin_Conig_t *Copy_PinInfo)
                     case DIO_PIN_INPUT:
                         CLEAR_BIT(DDRD_REG.DDRD_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTD_REG.PORTD_REGISTER, Copy_PinInfo->Pin_Num);
-                        SET_BIT(SFIOR_REG, PUB_BIT);
+                        SET_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     case DIO_PIN_INPUT_PULL_UP:
                         CLEAR_BIT(DDRC_REG.DDRC_REGISTER, Copy_PinInfo->Pin_Num);
                         SET_BIT(PORTC_REG.PORTC_REGISTER, Copy_PinInfo->Pin_Num);
-                        CLEAR_BIT(SFIOR_REG, PUB_BIT);
+                        CLEAR_BIT(SFIOR_REG, PUD_BIT);
                         break;
                     default:
                         Local_ErrorStatus = E_NOT_OK;

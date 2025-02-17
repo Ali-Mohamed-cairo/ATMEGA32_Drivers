@@ -114,17 +114,17 @@
 
 /***********************MULTI BITS AT TIME BIT MASK**********************/
 
-#define SET_N_BITS(REG, BIT_MASK)     (REG |= (BIT_MASK))
-#define CLEAR_N_BITS(REG, BIT_MASK)   (REG &= (~(BIT_MASK)))
-#define TOGGLE_N_BITS(REG, BIT_MASK)  (REG ^= (BIT_MASK))
+#define SET_N_BITS(REG, BIT_MASK)     ((REG) |= (BIT_MASK))
+#define CLEAR_N_BITS(REG, BIT_MASK)   ((REG) &= (~(BIT_MASK)))
+#define TOGGLE_N_BITS(REG, BIT_MASK)  ((REG) ^= (BIT_MASK))
 
 
 /***********************ONE BIT AT TIME BIT MASK************************/
 
-#define SET_BIT(REG, BIT_NUM)         (REG |= (1 << BIT_NUM))
-#define CLEAR_BIT(REG, BIT_NUM)       (REG &= (~(1 << BIT_NUM)))
-#define TOGGLE_BIT(REG, BIT_NUM)      (REG ^= (1 << BIT_NUM))
-#define GET_BIT(REG, BIT_NUM)        ((REG >> BIT_NUM) & 1)
+#define SET_BIT(REG, BIT_NUM)         ((REG) |= (1 << BIT_NUM))
+#define CLEAR_BIT(REG, BIT_NUM)       ((REG) &= (~(1 << BIT_NUM)))
+#define TOGGLE_BIT(REG, BIT_NUM)      ((REG) ^= (1 << BIT_NUM))
+#define GET_BIT(REG, BIT_NUM)         (((REG) >> BIT_NUM) & 1)
 
 #endif	/* BIT_MATH_H */
 

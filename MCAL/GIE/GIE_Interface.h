@@ -17,7 +17,8 @@
 #define GI_ENABLE       1
 
 
-Std_ReturnType MCAL_GlobalINTStatus(uint8 Copy_GIStatus);
+Std_ReturnType MCAL_GlobalINTStatusWrite(uint8 Copy_GIStatus);
+Std_ReturnType MCAL_GlobalINTStatusRead(uint8 *Copy_GIStatus);
 
 
 #endif /* MCAL_GIE_GIE_INTERFACE_H_ */

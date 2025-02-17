@@ -71,7 +71,7 @@ typedef struct{
     uint8 Port_Value;
     uint8 Port_Direction;
     /*From options : "INPUT_PORT" or "OUTPUT_PORT" or any char value where 0 bit 
-     * corrospounds to input pin  while 1 bit corrospounds to output pin
+     * corresponds to input pin  while 1 bit corresponds to output pin
      */
 }Port_Conig_t;
 
